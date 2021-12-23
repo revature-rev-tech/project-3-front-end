@@ -1,0 +1,59 @@
+<div class="scroll"> 
+
+    <br><br>
+<h1 class="lead">Welcome to RevTech Store</h1>
+
+
+<br><br>
+<div id="sortDiv" class="dropdown navbar-brand">
+    <h6>Sort By</h6>    
+    <div id="myDropdown" class="navbar-brand mx-3" class="dropdown-content">
+      <select>
+          <option>New Products</option>
+          <option>Price Higher to Lower</option>
+          <option>PriceLower to Higher</option>
+          <option>Relevant</option>
+      </select>
+    </div>
+</div>
+
+  <br><br>
+
+<!-- Create the table-->
+<table id="table-body" class="table mt-3"  class="table  table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Product Id </th>
+            <th scope="col">Product Name </th>
+            <th scope="col">Product Category</th>
+            <th scope="col">Product Description </th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Product Quantity</th>
+            <th scope="col">Product SKU</th>
+            <th scope="col">Product Image Url</th>
+        </tr>
+    </thead>
+
+    <tbody >
+     
+        <tr *ngFor="let row of allProducts" >
+            <td>{{row.productId}}</td>
+            <td>{{row.productName}}</td>
+            <td>{{row.productCategory}}</td>
+            <td>{{row.productDescription}}</td>
+            <td>{{row.productCost | currency}}</td>
+            <td>{{row.productQty}}</td>
+            <td>{{row.productSku}}</td>
+            <td>{{row.imageUrl}}</td>
+            
+        </tr>
+    </tbody>
+</table>
+
+<!-- Add the form for adding & update products-->
+
+<br><br>
+<div class="footer">
+    <p>RevTech Store 2021</p>
+</div>
+</div><!-- Scroll-->
