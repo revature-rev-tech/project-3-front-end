@@ -13,8 +13,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  btnClick = () => {
-    this.router.navigateByUrl('/checkout');
+  btnClick(){
+    this.router.navigate(['/checkout']);
   }
 
 }
