@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { HelloAdminComponent } from './hello/hello-admin/hello-admin.component';
 import { HelloCustomerComponent } from './hello/hello-customer/hello-customer.component';
 import { StoreProductComponent } from './product/store-product/store-product.component';
@@ -19,8 +18,7 @@ const routes: Routes = [
   { path: "hello-customer", component: HelloCustomerComponent, canActivate: [AdminGuard]},
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard]},
   { path: "customer", component: CustomerComponent, canActivate: [AdminGuard]},
-  { path: "store-product", component: StoreProductComponent, canActivate: [AdminGuard]},
-  { path: "checkout", component: CheckoutComponent, canActivate: [AdminGuard]}
+  { path: "store-product", component: StoreProductComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({
