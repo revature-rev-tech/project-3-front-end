@@ -60,8 +60,7 @@ export class StoreProductsComponent implements OnInit {
   //-----Example A function to search product(s) on sale
   productOnSale(){
     //do something or get by a speciific discount/sale endpoint 
-    document.getElementById("myDropdown")!.classList.toggle("show");
-
+   
   }
 
 }

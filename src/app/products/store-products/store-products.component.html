@@ -1,12 +1,15 @@
-<div class="scroll"> 
+<div class="scroll">
 
-    <br><br>
+<a  href="#" id="prodCartLink">cart</a>
+
+<button id="login" class="btn btn-primary">Login</button>
+<br><br>
 <h1 class="lead">Welcome to RevTech Store</h1>
-
 
 <br><br>
 <div id="sortDiv" class="dropdown navbar-brand">
-    <h6>Sort By</h6>    
+    
+    <h6 style="font-size:Larger;">Sort By</h6>    
     <div id="myDropdown" class="navbar-brand mx-3" class="dropdown-content">
       <select>
           <option>New Products</option>
@@ -16,42 +19,80 @@
           <option>PriceLower to Higher</option>
       </select>
     </div>
+ 
+</div>
+<hr>
+<br><br> <br><br>
+<hr>
+<br><br><br><br>
+
+<div class="left-side-div">
+    <h2>Browse</h2>
+    <hr>
+    <h6 style="font-size:Larger;">Category:</h6>
+    <br>
+        <a href="#">Games</a> 
+        <br><br>
+        <a href="#">CellPhones</a> 
+        <br><br>
+        <a href="#">TVs</a> 
+        <br><br>
+        <a href="#">Head Phones</a> 
+        <br><br>
+        <a href="#">PC Monitors</a> 
+        <br><br>
+        <a href="#">Air Purifiers</a>
+        <br><br>
+        <a href="#">Phone Charges</a>
+        <br><br>
+        <a href="#">Mini Fridges</a> 
+        <br><br>
+        <a href="#">Desk Lamps</a>
+        <br><br>
+        <a href="#">Remote Controls</a> 
+        <br><br>
+        <a href="#">Games Pads</a> 
+        <br><br>
+        
 </div>
 
-  <br><br> <br><br>
-  <h4 class="storeProdTxt">Store Products</h4>
-<!-- Create the table-->
-<table id="table-body" class="table mt-3"  class="table  table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Id </th>
-            <th scope="col">Name </th>
-            <th scope="col">Category</th>
-            <th scope="col">Description </th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">SKU</th>
-            <th scope="col">Image Url</th>
-        </tr>
-    </thead>
+<div class='container-fluid' >
+    <div class="card " *ngFor="let row of allProducts"> 
+          <!-- Place holder image to be removed later -->
+          <div class="zoom" >  
+          <img class='mx-auto img-thumbnail' src="https://i.imgur.com/pjITBzX.jpg" width="auto" height="auto" />
+</div>
+    
+    <div class="card-body text-center mx-auto" >
 
-    <tbody >
-     
-        <tr *ngFor="let row of allProducts" >
-            <td>{{row.productId}}</td>
-            <td>{{row.productName}}</td>
-            <td>{{row.productCategory}}</td>
-            <td>{{row.productDescription}}</td>
-            <td>{{row.productCost | currency}}</td>
-            <td>{{row.productQty}}</td>
-            <td>{{row.productSku}}</td>
-            <td>{{row.imageUrl}}</td>
-            
-        </tr>
-    </tbody>
-</table>
+            <div class='cvp' >
+                <!-- 
+                     {{row.productId}}
+                     {{row.productName}}
+                     {{row.productCategory}}
+                     {{row.productDescription}}
+                     {{row.productCost | currency}}
+                     {{row.productQty}}
+                     {{row.productSku}}
+                     {{row.imageUrl}}
+                -->
+                <h6 class="card-title font-weight-bold">{{row.productName}}</h6>
+                <p class="card-text">{{row.productCost | currency}}</p> 
+                <p class="card-text">{{row.productDescription}}</p> 
+                <a href="#" class="btn details px-auto" ><h6>View Details</h6></a>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                  </svg>
+                
+                <br /> <a href="#" class="btn cart px-auto">ADD TO CART</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- Add the form for adding & update products-->
+
 
 <br><br>
 <div class="footer">
