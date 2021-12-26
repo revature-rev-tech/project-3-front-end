@@ -65,6 +65,10 @@ th, td {
     margin-right: 20px;
     margin-bottom: 16px; 
 }
+.imgResponsive{
+    width: 100%;
+    height: auto;
+}
 h5 {
     text-align: center;
 }
@@ -72,7 +76,7 @@ h5 {
 .left-side-div{
     margin-top: 20px;
     float: left;
-    margin-right: 4%;
+    margin-right: 2%;
 }
 a {
     color: #212121;
