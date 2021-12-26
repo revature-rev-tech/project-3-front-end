@@ -2,12 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-<<<<<<< HEAD
-import {StoreProductsComponent } from './products/store-products/store-products.component';
-
-const routes: Routes = [
-  {path: 'products', component: StoreProductsComponent }
-=======
 import { HelloAdminComponent } from './hello/hello-admin/hello-admin.component';
 import { HelloCustomerComponent } from './hello/hello-customer/hello-customer.component';
 import { StoreProductComponent } from './product/store-product/store-product.component';
@@ -17,14 +11,15 @@ import { CustomerComponent } from './users/customer/customer.component';
 import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
 
+
 const routes: Routes = [
   { path: "login", component: LoginComponent},
   { path: "logout", component: LogoutComponent},
+  { path: 'product', component: StoreProductComponent },
   { path: "hello-admin", component: HelloAdminComponent, canActivate: [AdminGuard]},
   { path: "hello-customer", component: HelloCustomerComponent, canActivate: [AdminGuard]},
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard]},
   { path: "customer", component: CustomerComponent, canActivate: [AdminGuard]},
->>>>>>> main
 ];
 
 @NgModule({

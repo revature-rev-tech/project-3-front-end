@@ -5,13 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
-import { StoreProductsComponent } from './products/store-products/store-products.component';
-@NgModule({
-  declarations: [
-    AppComponent,
-    StoreProductsComponent,
-=======
 import { CheckoutComponent } from './checkout/checkout.component';
 import { StoreProductComponent } from './product/store-product/store-product.component';
 import { HelloAdminComponent } from './hello/hello-admin/hello-admin.component';
@@ -34,7 +27,6 @@ import { LogoutComponent } from './users/logout/logout.component';
     CustomerComponent,
     LoginComponent,
     LogoutComponent
->>>>>>> main
   ],
   imports: [
     BrowserModule,
