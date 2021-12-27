@@ -6,6 +6,6 @@ export class Cart {
   cartTotal: number = 0;
   cartPaid: boolean = false;
   cartRemoved: boolean = false;
-
+  //this comment does nothing
 
 }
