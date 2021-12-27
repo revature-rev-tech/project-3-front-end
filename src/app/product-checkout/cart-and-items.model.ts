@@ -2,6 +2,7 @@ import {ProductAndDiscount} from "./product-and-discount.model";
 
 export class CartAndItems {
 
+  cartId: number = 0;
   userId: number = 0;
   cartTotal: number = 0;
   cartPaid: boolean = false;
