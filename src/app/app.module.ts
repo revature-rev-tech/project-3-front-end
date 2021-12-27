@@ -12,6 +12,7 @@ import { AdminComponent } from './users/admin/admin.component';
 import { CustomerComponent } from './users/customer/customer.component';
 import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
+import { ProductPageComponent } from './product-checkout/product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LogoutComponent } from './users/logout/logout.component';
     AdminComponent,
     CustomerComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,
