@@ -11,9 +11,11 @@ import { CustomerComponent } from './users/customer/customer.component';
 import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
 
+
 const routes: Routes = [
   { path: "login", component: LoginComponent},
   { path: "logout", component: LogoutComponent},
+  { path: 'product', component: StoreProductComponent },
   { path: "hello-admin", component: HelloAdminComponent, canActivate: [AdminGuard]},
   { path: "hello-customer", component: HelloCustomerComponent, canActivate: [AdminGuard]},
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard]},
