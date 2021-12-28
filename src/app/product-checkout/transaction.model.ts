@@ -6,4 +6,5 @@ export class Transaction {
    // @ts-ignore
   transactionDate: TimestampProvider;
    cartId: number = 0;
+   // An unnessacary addition
 }
