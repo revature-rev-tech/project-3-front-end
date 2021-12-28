@@ -1,0 +1,120 @@
+<!-- ======= Checkout Section ======= -->
+<section id="Checkout" class="Checkout">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 entries">
+
+
+
+                <div class="entry" *ngFor="let allcheckout of testcheckout">
+                    <div class="entry-details  d-flex flex-row">
+                        <div class="d-flex flex-column my-cloumn1">
+                            <div class="entry-img">
+                                <img [src]="allcheckout.imageUrl" width=300px height=" auto " class="img-fluid ">
+                            </div>
+                        </div>
+                        <div class="my-cloumn2 d-flex flex-column align-items-start ">
+                            <h5 class="entry-title ">{{allcheckout.productDescription}}</h5>
+                            <div class="entry-content ">
+                                <h4 class="item-details ">Category: {{allcheckout.productCategory}}</h4><br>
+                                <h4 class="item-details ">Quantity: {{allcheckout.productQty}}</h4><br>
+                                <div class=" contact-shop ml-auto d-flex flex-row align-item-start ">
+                                    <button class="edit">Edit</button>
+                                    <button class="remove ml-auto" (click)="remove()">Remove</button>
+
+                                </div>
+                            </div>
+                            <div class="entry-meta ">
+                            </div>
+                        </div>
+                        <div class="entry-item-cost d-flex flex-column align-item-end my-cloumn3 active ">
+                            <div class="contact-shop ml-auto d-flex flex-row ">
+                                <h6>Contact shop</h6>
+                            </div>
+                            <div class="d-flex flex-row align-items-start ">
+                                <select class="form-select " aria-label="Default select example" (change)="changequantity()">
+                  <option selected>{{allcheckout.productQty}}</option>
+                  <option value="1 ">1</option>
+                  <option value="2 ">2</option>
+                  <option value="3 ">3</option>
+                </select>
+                                <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto ">${{allcheckout.productCost}}</h6>
+                                <br>
+                            </div>
+                            <!-- <h6 class="item-old-price" [ngStyle]=" allcheckout.discountDescription != null ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
+                                $</h6><br> -->
+
+                            <!-- <i style="font-size: 150% ; color: red; width: 200px; height: auto " class="fas fa-shopping-cart "></i> -->
+                            <!-- <div class="item-cheer-up " *ngIf="allcheckout.discountDescription != null " [ngStyle]="{'visibility': 'visible'}"> {{allcheckout.discountDescription }}</div> <br>
+                            <div class="item-cheer-up " *ngIf="allcheckout.discountDescription == null " [ngStyle]="{'visibility': 'hidden'}"> </div><br> -->
+                            <div class="item-cheer-up ">
+                                {{ allcheckout.discountDescription != null ? allcheckout.discountDescription : (allcheckout.discountDescription == null)? '':'' }} </div>
+                            <br>
+
+
+
+                            <!-- <h6 class="item-sale " [ngStyle]=" allcheckout.discountDescription != null ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
+                                sale: {{s allcheckout.discountPercentage}}</h6> -->
+
+                        </div>
+                    </div>
+                    <!-- <div class="entry-estimate-deliver d-flex flex-row ">
+                        <h6 class="estimate-deliver d-flex flex-column ml-auto ">Estimated delivery: Jan3-7<br>from United States
+                        </h6>
+                    </div> -->
+                </div>
+                <!-- End Checkout entry -->
+            </div>
+            <!-- ---------------------------------------------------------------------------------------- -->
+            <div class="col-lg-4 ">
+                <div class="sidebar ">
+
+                    <h3 class="sidebar-title ">How you'll Pay</h3>
+                    <div class="sidebar-item categories ">
+
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+
+                            <img src="../../assets/image/icons8-visa-48.png " width="30px " hight="auto " alt=" "><label class="form-check-label " for="exampleRadios1 "></label>
+                            <img src="../../assets/image/icons8-mastercard-48.png " width="30px " hight="auto " alt=" "><label class="form-check-label " for="exampleRadios1 "></label>
+                            <img src="../../assets/image/icons8-american-express-48.png " width="30px " hight="auto " alt=" "><label class="form-check-label " for="exampleRadios1 "></label>
+                            <img src="../../assets/image/discover.png " width="50px " hight="auto " alt=" "><label class="form-check-label " for="exampleRadios1 "></label>
+                        </div>
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <img src="../../assets/image/icons8-paypal-48.png " width="30px " hight="auto " alt=" "><label class="form-check-label " for="exampleRadios1 "></label>
+                        </div>
+                    </div>
+                    <!-- ----------------------------------------------- -->
+                    <div class="total-items d-flex flex-row ">
+                        <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6>
+                        <h6 class="item-amount d-flex flex-row ml-auto ">$68.00</h6>
+                    </div>
+                    <!-- ------------------------------------------------- -->
+                    <div class="shop-discount d-flex flex-row ">
+                        <h6 class="shop-discount-title d-flex flex-row mr-auto ">Shop discount</h6>
+                        <h6 class="shop-discount-amount d-flex d-flex flex-row ml-auto ">-$17.00</h6>
+                    </div>
+                    <!-- -------------------------------------------------- -->
+                    <hr>
+                    <!-- ------------------------------------------------- -->
+                    <div class="subtotal d-flex flex-row ">
+                        <h6 class="subtotal-title d-flex flex-row mr-auto ">Subtotal</h6>
+                        <h6 class="subtotal-amount d-flex d-flex flex-row ml-auto ">-$85.00</h6>
+                    </div>
+                    <!-- ------------------------------------------------- -->
+                    <div class="Shipping d-flex flex-row ">
+                        <h6 class="Shipping-title d-flex flex-row mr-auto ">Shipping</h6>
+                        <h6 class="Shipping-state d-flex d-flex flex-row ml-auto ">Free</h6>
+                    </div>
+                    <div class="sidebar-item recent-posts ">
+                        <button type="button " class="btn btn-secondary btn-lg btn-block ">Proceed to checkout</button>
+                    </div>
+                </div>
+                <!-- End sidebar -->
+            </div>
+            <!-- End Checkout sidebar -->
+        </div>
+    </div>
+</section>
+<!-- End Checkout Section -->

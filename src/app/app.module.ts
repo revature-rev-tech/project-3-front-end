@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutComponent } from './product-checkout/checkout/checkout.component';
 import { StoreProductComponent } from './product/store-product/store-product.component';
 import { HelloAdminComponent } from './hello/hello-admin/hello-admin.component';
 import { HelloCustomerComponent } from './hello/hello-customer/hello-customer.component';
@@ -28,7 +28,11 @@ import { ProductPageComponent } from './product-checkout/product-page/product-pa
     CustomerComponent,
     LoginComponent,
     LogoutComponent,
+<<<<<<< HEAD
+    CheckoutComponent
+=======
     ProductPageComponent
+>>>>>>> a53744ac087b93f54a098354ff51c5c8dd1d28f8
   ],
   imports: [
     BrowserModule,
