@@ -10,7 +10,6 @@ import { AdminComponent } from './users/admin/admin.component';
 import { CustomerComponent } from './users/customer/customer.component';
 import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
-import { CheckoutComponent } from './product-checkout/checkout/checkout.component';
 
 
 const routes: Routes = [
