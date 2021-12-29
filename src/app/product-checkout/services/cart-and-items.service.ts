@@ -12,8 +12,8 @@ export class CartAndItemsService {
 
   constructor(private http: HttpClient) { }
 
-  getCartAndItemsService(): Observable<CartAndItems[]> | null {
-    return null;
+  getCartAndItemsService(cartId: number): Observable<CartAndItems>{
+    return this.http.get<CartAndItems>(this.baseUrl + "/" + cartId);
   }
 
 }
