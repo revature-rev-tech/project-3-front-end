@@ -1,66 +1,69 @@
 <div class="scroll">
-<br><br>
-<h1 class="lead">Welcome to RevTech Store</h1>
+    <br><br>
+    <h1 class="lead">Welcome to RevTech Store</h1>
 
-<br><br>
-<div id="sortDiv" class="dropdown navbar-brand">
-    <br>
-    <h6 style="font-size:Larger;">Sort By</h6>    
-    <div id="myDropdown" class="navbar-brand mx-3" class="dropdown-content">
-      <select>
-          <option>New Products</option>
-          <option>Relevant</option>
-          <option>Staff Pick</option>
-          <option>Price Higher to Lower</option>
-          <option>PriceLower to Higher</option>
-      </select>
+    <br><br>
+    <div id="sortDiv" class="dropdown navbar-brand">
+        <br>
+        <h6 style="font-size:Larger;">Sort By</h6>
+        <div id="myDropdown" class="navbar-brand mx-3" class="dropdown-content">
+            <select>
+                <option>New Products</option>
+                <option>Relevant</option>
+                <option>Staff Pick</option>
+                <option>Price Higher to Lower</option>
+                <option>PriceLower to Higher</option>
+            </select>
+        </div>
+
     </div>
- 
-</div>
-<hr>
-<br><br> <br><br>
-<hr>
-<br><br><br><br>
-
-<div class="left-side-div">
-    <h2>Browse</h2>
     <hr>
-    <h6 style="font-size:Larger;">Category:</h6>
-    <br>
-        <a href="#">Games</a> 
+    <br><br> <br><br>
+    <hr>
+    <br><br><br><br>
+
+    <div class="left-side-div">
+        <h2>Browse</h2>
+        <hr>
+        <h6 style="font-size:Larger;">Category:</h6>
+        <br>
+        <a href="#">Games</a>
         <br><br>
-        <a href="#">CellPhones</a> 
+        <a href="#">CellPhones</a>
         <br><br>
-        <a href="#">TVs</a> 
+        <a href="#">TVs</a>
         <br><br>
-        <a href="#">Head Phones</a> 
+        <a href="#">Head Phones</a>
         <br><br>
-        <a href="#">PC Monitors</a> 
+        <a href="#">PC Monitors</a>
         <br><br>
         <a href="#">Air Purifiers</a>
         <br><br>
         <a href="#">Phone Chargers</a>
         <br><br>
-        <a href="#">Mini Fridges</a> 
+        <a href="#">Mini Fridges</a>
         <br><br>
         <a href="#">Desk Lamps</a>
         <br><br>
-        <a href="#">Remote Controls</a> 
+        <a href="#">Remote Controls</a>
         <br><br>
-        <a href="#">Games Pads</a> 
-        <br><br>   
-</div>
-<div class='container-fluid' >
-    <div class="card " *ngFor="let row of allProducts"> 
-          <!-- Place holder image to be removed later -->
-          <div class="zoom" >  
-          <img class="imgResponsive" class='mx-auto img-thumbnail' src="https://i.imgur.com/pjITBzX.jpg" width="auto" height="auto" />
-</div>
-    
-    <div class="card-body text-center mx-auto" >
+        <a href="#">Games Pads</a>
+        <br><br>
+    </div>
+    <div class='container-fluid'>
+        <div class="card " *ngFor="let row of allDiscountProducts">
+            <!-- Place holder image to be removed later -->
+            <div class="zoom">
+                <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
+                    width="auto" height="auto" />
+                    <!-- <img class="imgResponsive" class='mx-auto img-thumbnail' src="http://www.itpamembers.org/wp-content/uploads/2012/06/special.png"
+                    width="auto" height="auto" /> -->
+            </div>
 
-            <div class='cvp' >
-                <!-- 
+            <div class="card-body text-center mx-auto">
+
+                <div class='cvp'>
+                    <!-- 
                      {{row.productId}}
                      {{row.productName}}
                      {{row.productCategory}}
@@ -70,24 +73,68 @@
                      {{row.productSku}}
                      {{row.imageUrl}}
                 -->
-                <h6 class="card-title font-weight-bold">{{row.productName}}</h6>
-                <p class="card-text">{{row.productCost | currency}}</p> 
-                <p class="card-text">{{row.productDescription}}</p> 
-                <a href="#" class="btn details px-auto" ><h6>View Details</h6></a>
-                
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg>
-                
-                <br /> <a href="#" class="btn cart px-auto">ADD TO CART</a>
+                    <h6  class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
+                    <p class="card-text">{{row.productCost*row.discountPercentage | currency }} <s>{{row.productCost | currency}}</s></p>
+                    <p class="card-text" class="parLength">{{row.productDescription}}</p>
+                    <a href="#" class="btn details px-auto">
+                        <h6>View Details</h6>
+                    </a>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg>
+
+                    <br /> <a href="#" class="btn cart px-auto">ADD TO CART</a>
+                </div>
+            </div>
+        </div>
+        <div class="card " *ngFor="let row of allProducts">
+            <!-- Place holder image to be removed later -->
+            <div class="zoom">
+                <!-- <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="https://i.imgur.com/pjITBzX.jpg"
+                    width="auto" height="auto" /> -->
+                    <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
+                    width="auto" height="auto" />
+            </div>
+
+            <div class="card-body text-center mx-auto">
+
+                <div class='cvp'>
+                    <!-- 
+                     {{row.productId}}
+                     {{row.productName}}
+                     {{row.productCategory}}
+                     {{row.productDescription}}
+                     {{row.productCost | currency}}
+                     {{row.productQty}}
+                     {{row.productSku}}
+                     {{row.imageUrl}}
+                -->
+                    <h1 class="card-title font-weight-bold" class="parLength">{{row.productName}}</h1>
+                    <p class="card-text">{{row.productCost | currency}}</p>
+                    <p class="card-text" class="p">{{row.productDescription}}</p>
+                    <a href="#" class="btn details px-auto">
+                        <h6>View Details</h6>
+                    </a>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg>
+
+                    <br /> <a href="#" class="btn cart px-auto">ADD TO CART</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<br><br>
-<div class="footer">
-    <p>RevTech Store 2021</p>
-</div>
+    <br><br>
+    <div class="footer">
+        <p>RevTech Store 2021</p>
+    </div>
 </div><!-- Scroll-->
