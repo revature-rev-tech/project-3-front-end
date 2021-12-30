@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { HelloAdminComponent } from './hello/hello-admin/hello-admin.component';
 import { HelloCustomerComponent } from './hello/hello-customer/hello-customer.component';
 import { StoreProductComponent } from './product/store-product/store-product.component';

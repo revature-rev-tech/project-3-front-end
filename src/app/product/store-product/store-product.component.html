@@ -56,25 +56,18 @@
             <div class="zoom">
                 <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
-                    <!-- <img class="imgResponsive" class='mx-auto img-thumbnail' src="http://www.itpamembers.org/wp-content/uploads/2012/06/special.png"
+                <!-- <img class="imgResponsive" class='mx-auto img-thumbnail' src="http://www.itpamembers.org/wp-content/uploads/2012/06/special.png"
                     width="auto" height="auto" /> -->
             </div>
 
             <div class="card-body text-center mx-auto">
 
                 <div class='cvp'>
-                    <!-- 
-                     {{row.productId}}
-                     {{row.productName}}
-                     {{row.productCategory}}
-                     {{row.productDescription}}
-                     {{row.productCost | currency}}
-                     {{row.productQty}}
-                     {{row.productSku}}
-                     {{row.imageUrl}}
-                -->
-                    <h6  class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
-                    <p class="card-text">{{row.productCost*row.discountPercentage | currency }} <s>{{row.productCost | currency}}</s></p>
+
+                    <h6 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
+                    <p class="card-text">{{row.productCost*row.discountPercentage | currency }} <s>{{row.productCost |
+                            currency}}</s></p>
+                    <p id="bold-category" class="card-text">{{row.productCategory}}</p>
                     <p class="card-text" class="parLength">{{row.productDescription}}</p>
                     <a href="#" class="btn details px-auto">
                         <h6>View Details</h6>
@@ -96,25 +89,16 @@
             <div class="zoom">
                 <!-- <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="https://i.imgur.com/pjITBzX.jpg"
                     width="auto" height="auto" /> -->
-                    <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
+                <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
             </div>
 
             <div class="card-body text-center mx-auto">
 
                 <div class='cvp'>
-                    <!-- 
-                     {{row.productId}}
-                     {{row.productName}}
-                     {{row.productCategory}}
-                     {{row.productDescription}}
-                     {{row.productCost | currency}}
-                     {{row.productQty}}
-                     {{row.productSku}}
-                     {{row.imageUrl}}
-                -->
                     <h1 class="card-title font-weight-bold" class="parLength">{{row.productName}}</h1>
                     <p class="card-text">{{row.productCost | currency}}</p>
+                    <p id="bold-category" class="card-text">{{row.productCategory}}</p>
                     <p class="card-text" class="p">{{row.productDescription}}</p>
                     <a href="#" class="btn details px-auto">
                         <h6>View Details</h6>
