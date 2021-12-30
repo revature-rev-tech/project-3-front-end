@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartAndItems, ItemProductAndDiscount } from '../cart-and-items.model';
 import { ProductAndDiscount } from '../product-and-discount.model';
+import { CartAndItemsService } from '../services/cart-and-items.service';
 
 @Component({
   selector: 'app-checkout',
@@ -10,59 +11,72 @@ import { ProductAndDiscount } from '../product-and-discount.model';
 })
 export class CheckoutComponent implements OnInit {
 
-
-
   productAndDiscount: ProductAndDiscount = new ProductAndDiscount();
 
-  cartAndItems: CartAndItems = new CartAndItems();
+  cartAndItemsId: CartAndItems = new CartAndItems();
+  totalCost: number = 0
+  total: number = 0
+  itemNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  errorMsg: string = "";
+  displayStyle: string = "";
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private cartAndItemsService: CartAndItemsService) { }
 
-  userId: number = 0;
-  cartTotal: number = 0;
-  cartPaid: boolean = false;
-  cartRemoved: boolean = false;
-  cartItems: Array<ItemProductAndDiscount> = [];
-
-
-  testcheckout: ProductAndDiscount[] = [
-    {
-      productId: 1,
-      productSku: "25666",
-      productName: "laptop",
-      productDescription: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia",
-      productCategory: "Technology",
-      productCost: 37.00,
-      productQty: 5,
-      imageUrl: "../../assets/image/laptop.webp",
-      productRemoved: false,
-      discountId: 0,
-      discountDescription: "over 20 people have this in their cart",
-      discountPercentage: 0,
-    },
-    {
-      productId: 2,
-      productSku: "111111",
-      productName: "laptop2",
-      productDescription: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis",
-      productCategory: "Technology",
-      productCost: 100.00,
-      productQty: 2,
-      imageUrl: "../../assets/image/laptop.webp",
-      productRemoved: false,
-      discountId: 0,
-      discountDescription: "",
-      discountPercentage: 35,
-    }
-  ]
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
-  cartItemNumber = 5;
   ngOnInit(): void {
+    this.displayAllCarts()
   }
-  remove() {
-    console.log("remove")
+
+  displayAllCarts() {
+    //var cartId: any = this.activatedRoute.snapshot.paramMap.get("cartId");
+    this.cartAndItemsService.getCartAndItemsService(1).subscribe((response) => {
+      this.cartAndItemsId = response;
+      console.log("discountDescription " + this.cartAndItemsId.cartItems[0].productAndDiscount.productName)
+      this.totalCost = this.getItemsTotal()
+      console.log("total = " + this.totalCost.toFixed(2))
+    }, error => {
+      this.errorMsg = 'There was some internal error! Please try again later!';
+    });
+  }
+
+  getItemsTotal(): any {
+    this.cartAndItemsId.cartItems.forEach((value, index) => {
+      console.log("discountPercentage" + value.productAndDiscount.discountPercentage)
+      console.log("productCost" + value.productAndDiscount.productCost)
+
+      if (value.productAndDiscount.discountPercentage < 1.0) {
+        this.total += value.productAndDiscount.productCost
+        console.log("my new total = " + this.total.toFixed(2))
+      } else {
+        this.total += (value.productAndDiscount.discountPercentage / 100) * value.productAndDiscount.productCost
+        console.log("my total = " + this.total.toFixed(2))
+      }
+    })
+    return this.total
+  }
+
+  remove(productId: number) {
+    console.log("remove product" + productId)
     this.productAndDiscount.productRemoved = true
   }
-  changequantity() {
-    console.log("change quantity")
+
+  changequantity(event: any) {
+    console.log("change quantity Number " + event.target.value)
   }
+
+  proceedToCheckout() {
+    this.displayStyle = "block";
+    setInterval(() => {
+      this.displayStyle = "none";
+      this.router.navigate(['/home']);
+    }, 5000);
+
+
+  }
+
+  ngOnDestroy() {
+
+    clearInterval();
+
+  }
+
 
 }
