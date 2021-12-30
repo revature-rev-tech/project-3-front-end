@@ -13,11 +13,11 @@ export class CartAndItemsService {
   constructor(private http: HttpClient) { }
 
   getCartAndItemsService(cartId: number): Observable<CartAndItems>{
-    return this.http.get<CartAndItems>(this.baseUrl + "/" + cartId);
+    return this.http.get<CartAndItems>(this.baseUrl + "/cart/" + cartId);
   }
 
   getCartAndItemsWithUserIdService(userId: number): Observable<CartAndItems>{
-    return this.http.get<CartAndItems>(this.baseUrl + "/" + userId);
+    return this.http.get<CartAndItems>(this.baseUrl + "/user/" + userId);
   }
 
 }
