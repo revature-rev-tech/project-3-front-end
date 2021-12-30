@@ -65,7 +65,7 @@
                 <div class='cvp'>
 
                     <h6 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
-                    <p class="card-text">{{row.productCost*row.discountPercentage | currency }} <s>{{row.productCost |
+                    <p class="card-text">{{row.productCost-row.productCost*row.discountPercentage | currency }} <s>{{row.productCost |
                             currency}}</s></p>
                     <p id="bold-category" class="card-text">{{row.productCategory}}</p>
                     <p class="card-text" class="parLength">{{row.productDescription}}</p>
