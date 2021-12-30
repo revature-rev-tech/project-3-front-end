@@ -38,6 +38,7 @@ export class CheckoutComponent implements OnInit {
       console.log("total = " + this.totalCost.toFixed(2))
     }, error => {
       this.errorMsg = 'There was some internal error! Please try again later!';
+      console.log(error);
     });
   }
 
@@ -50,7 +51,7 @@ export class CheckoutComponent implements OnInit {
         this.total += value.productAndDiscount.productCost
         console.log("my new total = " + this.total.toFixed(2))
       } else {
-        this.total += (value.productAndDiscount.discountPercentage / 100) * value.productAndDiscount.productCost
+        this.total += value.productAndDiscount.productCost - ((value.productAndDiscount.discountPercentage / 100) * value.productAndDiscount.productCost)
 
         console.log("my total = " + this.total.toFixed(2))
       }
@@ -72,11 +73,11 @@ export class CheckoutComponent implements OnInit {
     this.cartAndItemsId.cartRemoved = true
     this.cartAndItemsId.cartPaid = true
 
-    this.transactionService.sendTransaction(this.cartAndItemsId).subscribe((response) => {
+    // this.transactionService.sendTransaction().subscribe((response) => {
 
-    }, error => {
-      this.errorMsg = 'There was some internal error! Please try again later!';
-    });
+    // }, error => {
+    //   this.errorMsg = 'There was some internal error! Please try again later!';
+    // });
 
     setInterval(() => {
       this.displayStyle = "none";
