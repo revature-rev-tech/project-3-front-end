@@ -1,8 +1,10 @@
+import { Cart } from './../cart.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartAndItems, ItemProductAndDiscount } from '../cart-and-items.model';
 import { ProductAndDiscount } from '../product-and-discount.model';
 import { CartAndItemsService } from '../services/cart-and-items.service';
+import { TransactionService } from '../services/transaction.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,12 +16,14 @@ export class CheckoutComponent implements OnInit {
   productAndDiscount: ProductAndDiscount = new ProductAndDiscount();
 
   cartAndItemsId: CartAndItems = new CartAndItems();
+  cart: Cart = new Cart();
   totalCost: number = 0
   total: number = 0
   itemNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   errorMsg: string = "";
   displayStyle: string = "";
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private cartAndItemsService: CartAndItemsService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router,
+    private cartAndItemsService: CartAndItemsService, private transactionService: TransactionService) { }
 
   ngOnInit(): void {
     this.displayAllCarts()
@@ -47,6 +51,7 @@ export class CheckoutComponent implements OnInit {
         console.log("my new total = " + this.total.toFixed(2))
       } else {
         this.total += (value.productAndDiscount.discountPercentage / 100) * value.productAndDiscount.productCost
+
         console.log("my total = " + this.total.toFixed(2))
       }
     })
@@ -64,18 +69,23 @@ export class CheckoutComponent implements OnInit {
 
   proceedToCheckout() {
     this.displayStyle = "block";
+    this.cartAndItemsId.cartRemoved = true
+    this.cartAndItemsId.cartPaid = true
+
+    this.transactionService.sendTransaction(this.cartAndItemsId).subscribe((response) => {
+
+    }, error => {
+      this.errorMsg = 'There was some internal error! Please try again later!';
+    });
+
     setInterval(() => {
       this.displayStyle = "none";
       this.router.navigate(['/home']);
     }, 5000);
-
-
   }
 
   ngOnDestroy() {
-
     clearInterval();
-
   }
 
 
