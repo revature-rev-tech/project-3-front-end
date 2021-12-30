@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HelloAdminComponent } from './hello/hello-admin/hello-admin.component';
 import { HelloCustomerComponent } from './hello/hello-customer/hello-customer.component';
+import { CheckoutComponent } from './product-checkout/checkout/checkout.component';
 import { StoreProductComponent } from './product/store-product/store-product.component';
 import { AdminGuard } from './users/admin.guard';
 import { AdminComponent } from './users/admin/admin.component';
