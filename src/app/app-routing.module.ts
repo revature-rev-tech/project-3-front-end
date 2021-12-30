@@ -11,6 +11,7 @@ import { AdminComponent } from './users/admin/admin.component';
 import { CustomerComponent } from './users/customer/customer.component';
 import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
+import {ProductPageComponent} from "./product-checkout/product-page/product-page.component";
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: "hello-customer", component: HelloCustomerComponent, canActivate: [AdminGuard]},
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard]},
   { path: "customer", component: CustomerComponent, canActivate: [AdminGuard]},
+  { path: "product-page", component: ProductPageComponent, canActivate: [AdminGuard]},
   { path: "checkout", component: CheckoutComponent, canActivate: [AdminGuard]},
 ];
 
@@ -34,5 +36,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
