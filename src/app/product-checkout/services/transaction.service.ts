@@ -12,8 +12,8 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
-  sendTransaction(): Observable<Transaction> | null {
-    return null;
+  sendTransaction(transaction: Transaction): Observable<Transaction> {
+    return this.http.post<Transaction>(this.baseUrl, transaction);
   }
 
 }
