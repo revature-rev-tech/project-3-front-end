@@ -22,15 +22,15 @@ export class FileUploadService {
   onUpload(image: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', image);
-    return this.http.post<any>(this.baseUrl + '/upload', {
-      headers: new HttpHeaders({
-        'Accept': 'text/html, application/xhtml+xml, */*',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }),
-      responseType: 'text'
-    });
+    // let httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Accept': 'text/html, application/xhtml+xml, */*',
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   }),
+    //   responseType: 'text'
+    // };
+    return this.http.post<any>(this.baseUrl + '/upload', formData);
   }
-
   // const formData = new FormData();
   // for (const file of this.files) {
   // formData.append(name, file, file.name);

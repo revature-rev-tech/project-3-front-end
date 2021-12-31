@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {CartAndItems} from "../cart-and-items.model";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { CartAndItems } from "../cart-and-items.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,11 @@ export class CartAndItemsService {
   constructor(private http: HttpClient) { }
 
   getCartAndItemsService(cartId: number): Observable<CartAndItems>{
-    return this.http.get<CartAndItems>(this.baseUrl + "/" + cartId);
+    return this.http.get<CartAndItems>(this.baseUrl + "/cart/" + cartId);
   }
 
-  getCartAndItemsWithUserIdService(userId: number): Observable<CartAndItems>{
-    return this.http.get<CartAndItems>(this.baseUrl + "/" + userId);
+  getCartAndItemsWithUserIdService(userId: number): Observable<CartAndItems> {
+    return this.http.get<CartAndItems>(this.baseUrl + "/user/" + userId);
   }
 
 }
