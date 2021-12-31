@@ -19,13 +19,11 @@ const routes: Routes = [
   { path: 'product', component: StoreProductComponent },
   { path: "hello-admin", component: HelloAdminComponent, canActivate: [AdminGuard]},
   { path: "hello-customer", component: HelloCustomerComponent, canActivate: [AdminGuard]},
-  
   { path: "customer", component: CustomerComponent, canActivate: [AdminGuard]},
   { path: "checkout", component: CheckoutComponent, canActivate: [AdminGuard]},
   { path: "admin", component: AdminComponent},
   { path: '', redirectTo: 'product', pathMatch: 'full'}
-  // { path: "admin", component: AdminComponent, canActivate: [AdminGuard]},
-];
+
 
 @NgModule({
   imports: [
