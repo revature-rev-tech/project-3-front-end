@@ -12,7 +12,7 @@ export class CartAndItemsService {
 
   constructor(private http: HttpClient) { }
 
-  getCartAndItemsService(cartId: number): Observable<CartAndItems> {
+  getCartAndItemsService(cartId: number): Observable<CartAndItems>{
     return this.http.get<CartAndItems>(this.baseUrl + "/cart/" + cartId);
   }
 
