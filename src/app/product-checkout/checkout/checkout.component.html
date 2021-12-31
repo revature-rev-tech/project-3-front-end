@@ -6,21 +6,22 @@
 
 
 
-                <div class="entry" *ngFor="let allcheckout of testcheckout">
+                <div class="entry" *ngFor="let cartcheckout of cartAndItemsId.cartItems">
                     <div class="entry-details  d-flex flex-row">
                         <div class="d-flex flex-column my-cloumn1">
                             <div class="entry-img">
-                                <img [src]="allcheckout.imageUrl" width=300px height=" auto " class="img-fluid ">
+                                <img [src]="cartcheckout.productAndDiscount.imageUrl" width=300px height=" auto " class="img-fluid ">
                             </div>
                         </div>
                         <div class="my-cloumn2 d-flex flex-column align-items-start ">
-                            <h5 class="entry-title ">{{allcheckout.productDescription}}</h5>
+                            <h5 class="entry-title ">{{cartcheckout.productAndDiscount.productDescription}}</h5>
                             <div class="entry-content ">
-                                <h4 class="item-details ">Category: {{allcheckout.productCategory}}</h4><br>
-                                <h4 class="item-details ">Quantity: {{allcheckout.productQty}}</h4><br>
+                                <h4 class="item-details ">Category: {{cartcheckout.productAndDiscount.productCategory}}
+                                </h4><br>
+                                <h4 class="item-details ">Available: {{cartcheckout.productAndDiscount.productQty}}</h4>
+                                <br>
                                 <div class=" contact-shop ml-auto d-flex flex-row align-item-start ">
-                                    <button class="edit">Edit</button>
-                                    <button class="remove ml-auto" (click)="remove()">Remove</button>
+                                    <button class="remove " (click)="remove(cartcheckout.productId)">Remove</button>
 
                                 </div>
                             </div>
@@ -32,29 +33,47 @@
                                 <h6>Contact shop</h6>
                             </div>
                             <div class="d-flex flex-row align-items-start ">
-                                <select class="form-select " aria-label="Default select example" (change)="changequantity()">
-                  <option selected>{{allcheckout.productQty}}</option>
-                  <option value="1 ">1</option>
-                  <option value="2 ">2</option>
-                  <option value="3 ">3</option>
-                </select>
-                                <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto ">${{allcheckout.productCost}}</h6>
-                                <br>
-                            </div>
-                            <!-- <h6 class="item-old-price" [ngStyle]=" allcheckout.discountDescription != null ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
-                                $</h6><br> -->
+                                <select class="form-select " aria-label="Default select example" (change)="changequantity($event)">
+                                    <option selected>{{cartcheckout.cartQty}}</option>
+                                    <ng-container *ngFor="let itemN of itemNum">
+                                        <option *ngIf="itemN <= cartcheckout.productAndDiscount.productQty"
+                                            [value]="itemN">
+                                            {{itemN}}
+                                        </option>
+                                    </ng-container>
+                                </select>
 
-                            <!-- <i style="font-size: 150% ; color: red; width: 200px; height: auto " class="fas fa-shopping-cart "></i> -->
-                            <!-- <div class="item-cheer-up " *ngIf="allcheckout.discountDescription != null " [ngStyle]="{'visibility': 'visible'}"> {{allcheckout.discountDescription }}</div> <br>
-                            <div class="item-cheer-up " *ngIf="allcheckout.discountDescription == null " [ngStyle]="{'visibility': 'hidden'}"> </div><br> -->
-                            <div class="item-cheer-up ">
-                                {{ allcheckout.discountDescription != null ? allcheckout.discountDescription : (allcheckout.discountDescription == null)? '':'' }} </div>
+                            </div>
+                            <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto " *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 1.0 ">
+                                ${{cartcheckout.productAndDiscount.productCost | number :'1.2-2'}} </h6>
+                            <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto " *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
+                                ${{(cartcheckout.productAndDiscount.productCost-((cartcheckout.productAndDiscount.discountPercentage/100)*cartcheckout.productAndDiscount.productCost))| number :'1.2-2'}} </h6>
                             <br>
 
 
+                            <h6 class="item-old-price" *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
+                                $ {{cartcheckout.productAndDiscount.productCost}}</h6><br>
+                            <h6 class="item-old-price" *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 1.0 " [ngStyle]="{'visibility': 'hidden'}">
+                                $ {{cartcheckout.productAndDiscount.productCost}}</h6><br>
 
-                            <!-- <h6 class="item-sale " [ngStyle]=" allcheckout.discountDescription != null ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
-                                sale: {{s allcheckout.discountPercentage}}</h6> -->
+
+                            <!-- <i style="font-size: 150% ; color: red; width: 200px; height: auto " class="fas fa-shopping-cart "></i> -->
+                            <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountDescription != null ">
+                                {{cartcheckout.productAndDiscount.discountDescription }}</div> <br>
+
+                            <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountDescription == null " [ngStyle]="{'visibility': 'hidden'}">
+                                {{cartcheckout.productAndDiscount.discountDescription }}</div> <br>
+
+
+
+
+                            <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 1.0 " [ngStyle]="{'visibility': 'hidden'}">
+                            </h6>
+
+                            <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage >1.0 ">
+                                Sale: {{cartcheckout.productAndDiscount.discountPercentage}}%</h6>
+
+
 
                         </div>
                     </div>
@@ -88,27 +107,49 @@
                     <!-- ----------------------------------------------- -->
                     <div class="total-items d-flex flex-row ">
                         <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6>
-                        <h6 class="item-amount d-flex flex-row ml-auto ">$68.00</h6>
+                        <h6 class="item-amount d-flex flex-row ml-auto ">${{totalCost | number:'1.2-2' }}</h6>
                     </div>
                     <!-- ------------------------------------------------- -->
-                    <div class="shop-discount d-flex flex-row ">
-                        <h6 class="shop-discount-title d-flex flex-row mr-auto ">Shop discount</h6>
-                        <h6 class="shop-discount-amount d-flex d-flex flex-row ml-auto ">-$17.00</h6>
-                    </div>
+                    <!-- <div class="shop-discount d-flex flex-row "> -->
+                    <!-- <h6 class="shop-discount-title d-flex flex-row mr-auto ">Shop discount</h6> -->
+                    <!-- <h6 class="shop-discount-amount d-flex d-flex flex-row ml-auto ">-$17.00</h6> -->
+                    <!-- </div> -->
                     <!-- -------------------------------------------------- -->
                     <hr>
                     <!-- ------------------------------------------------- -->
-                    <div class="subtotal d-flex flex-row ">
-                        <h6 class="subtotal-title d-flex flex-row mr-auto ">Subtotal</h6>
-                        <h6 class="subtotal-amount d-flex d-flex flex-row ml-auto ">-$85.00</h6>
-                    </div>
+                    <!-- <div class="subtotal d-flex flex-row "> -->
+                    <!-- <h6 class="subtotal-title d-flex flex-row mr-auto ">Subtotal</h6> -->
+                    <!-- <h6 class="subtotal-amount d-flex d-flex flex-row ml-auto ">-$85.00</h6> -->
+                    <!-- </div> -->
                     <!-- ------------------------------------------------- -->
                     <div class="Shipping d-flex flex-row ">
                         <h6 class="Shipping-title d-flex flex-row mr-auto ">Shipping</h6>
                         <h6 class="Shipping-state d-flex d-flex flex-row ml-auto ">Free</h6>
                     </div>
                     <div class="sidebar-item recent-posts ">
-                        <button type="button " class="btn btn-secondary btn-lg btn-block ">Proceed to checkout</button>
+                        <button type="button " class="btn btn-secondary btn-lg btn-block " (click)="proceedToCheckout()">Proceed to
+                            checkout</button>
+                        <!-- ---------------------------------------------------- -->
+                        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Rev-Tech</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Thanks for shoping with Rev-Tech</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- --------------------------------------------------------- -->
+
+
+
                     </div>
                 </div>
                 <!-- End sidebar -->
