@@ -8,12 +8,12 @@ import {ProductAndDiscount} from "../product-and-discount.model";
 })
 export class ProductAndDiscountService {
 
-  baseUrl = "http://localhost:7777/api/product-and-discount";
+  baseUrl = "http://localhost:7777/api/product-discount";
 
   constructor(private http: HttpClient) { }
 
-  getProductAndDiscountService(): Observable<ProductAndDiscount> | null {
-    return null;
+  getProductAndDiscountService(productId: number): Observable<ProductAndDiscount> {
+    return this.http.get<ProductAndDiscount>(this.baseUrl + "/" + productId);
   }
 
 }
