@@ -93,14 +93,16 @@ export class AdminComponent implements OnInit {
     )
   }
 
-  uploadImage(imageInput: any) {
+  public uploadImage(imageInput: any) {
     const reader = new FileReader(); console.log(reader);
 
+    console.log(imageInput.files[0]);
     this.fileUploadService.onUpload(imageInput.files[0]).subscribe({
       next: async (response) => {
-        console.log(response);
-        this.newProduct.imageUrl = response;
+
         this.productObject.imageUrl = response;
+        this.newProduct.imageUrl = response;
+        
       },
       error: err => {
         console.log(err);
@@ -116,13 +118,8 @@ export class AdminComponent implements OnInit {
     this.newProduct.productCategory = this.formValue.value.product_category;
     this.newProduct.productDescription = this.formValue.value.product_description;
     this.newProduct.productQty = this.formValue.value.product_qty;
-    this.newProduct.imageUrl = this.formValue.value.image_url;
 
     // Let's post the data through the post request in service
-    // if (this.newProduct.productSku != '' && this.newProduct.productName != '' &&
-    //   this.newProduct.productCost != 0 && this.newProduct.productCategory != '' &&
-    //   this.newProduct.productDescription != '' && this.newProduct.productQty != 0 &&
-    //   this.newProduct.imageUrl != '') {
       this.productService.addProductsService(this.newProduct).subscribe(
         (response) => {
           this.loadProducts();
@@ -141,7 +138,6 @@ export class AdminComponent implements OnInit {
       this.router.navigate(['admin'])
       //Reload the page
       this.loadProducts();
-    // }
   }
   //Method to set the new values on to the modal table rows
   onEditRow(row: any) {
@@ -165,7 +161,7 @@ export class AdminComponent implements OnInit {
     this.productObject.productCategory = this.formValue.value.product_category;
     this.productObject.productDescription = this.formValue.value.product_description;
     this.productObject.productQty = this.formValue.value.product_qty;
-    // this.productObject.imageUrl = this.formValue.value.image_url;
+    console.log(this.formValue.value.image_url);
     //add more later if needed
     this.productService.updateProductsService(this.productObject).subscribe(
       (response) => {
