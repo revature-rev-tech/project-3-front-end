@@ -12,7 +12,7 @@ import { AdminComponent } from './users/admin/admin.component';
 import { CustomerComponent } from './users/customer/customer.component';
 import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
-import { CheckoutComponent } from './product-checkout/checkout/checkout.component';
+//import { CheckoutComponent } from './product-checkout/checkout/checkout.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -26,9 +26,10 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
   { path: 'product', component: StoreProductComponent },
-  { path: '', redirectTo: 'product', pathMatch: 'full'}
+  { path: '', redirectTo: 'product', pathMatch: 'full'},
   { path: "home", component: HomeComponent },
   { path: "product-page", component: ProductPageComponent, canActivate: [AdminGuard] }
+];
 
 @NgModule({
   imports: [
