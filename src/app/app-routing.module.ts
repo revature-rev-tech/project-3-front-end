@@ -26,13 +26,12 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
   { path: 'product', component: StoreProductComponent },
-
   { path: "hello-admin", component: HelloAdminComponent, canActivate: [AdminGuard] },
   { path: "hello-customer", component: HelloCustomerComponent, canActivate: [AdminGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: "customer", component: CustomerComponent, canActivate: [AdminGuard] },
   { path: "home", component: HomeComponent },
-  { path: "product-page", component: ProductPageComponent, canActivate: [AdminGuard] },
+  { path: "product-page/:productId", component: ProductPageComponent },
 ];
 
 @NgModule({
