@@ -8,16 +8,18 @@ import { CartAndItems } from "../cart-and-items.model";
 })
 export class CartAndItemsService {
 
-  baseUrl = "http://localhost:7777/api/cart-and-items";
+  baseUrl = "http://localhost:7777/api/cart-and-items/cart";
+  base2Url = "http://localhost:7777/api/cart-and-items/user";
+
 
   constructor(private http: HttpClient) { }
 
-  getCartAndItemsService(cartId: number): Observable<CartAndItems>{
-    return this.http.get<CartAndItems>(this.baseUrl + "/cart/" + cartId);
-  }
+  getCartAndItemsService(cartId: number): Observable<CartAndItems> {
+    return this.http.get<CartAndItems>(this.baseUrl + "/" + cartId);
+
 
   getCartAndItemsWithUserIdService(userId: number): Observable<CartAndItems> {
-    return this.http.get<CartAndItems>(this.baseUrl + "/user/" + userId);
+    return this.http.get<CartAndItems>(this.base2Url + "/" + userId);
   }
 
 }

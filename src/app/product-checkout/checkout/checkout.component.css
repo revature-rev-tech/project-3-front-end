@@ -97,9 +97,10 @@ h6 {
     font-weight: bold;
 }
 
-.Checkout .entry .entry-content .contact-shop .remove,
-.edit {
-    font-weight: bold;
+.Checkout .entry .entry-content .contact-shop .remove
+{
+color: blue;
+    font-weight: normal;
     background: none;
     border: none;
     padding: 0;
@@ -119,7 +120,7 @@ h6 {
 }
 
 .Checkout .entry .entry-details .entry-item-cost .form-select {
-    width: 60px;
+    width: 67px;
 }
 
 .Checkout .entry-item-cost .item-sale-price h6 {
@@ -129,6 +130,7 @@ h6 {
 }
 
 .Checkout .entry-details .entry-item-cost .item-old-price {
+    color: darkgrey;
     font-size: 12px;
     padding: 0;
     margin: 0;
