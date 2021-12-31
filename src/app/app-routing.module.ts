@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: "customer", component: CustomerComponent, canActivate: [AdminGuard] },
   { path: "home", component: HomeComponent },
-  { path: "product-page", component: ProductPageComponent },
+  { path: "product-page/:productId", component: ProductPageComponent },
 ];
 
 @NgModule({
