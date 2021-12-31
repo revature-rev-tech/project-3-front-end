@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpRequest, HttpHeaders, HttpEvent} from '@angular/common/http';
 import { Observable} from 'rxjs';
-import { Product } from './store-product/product.model';
+import { Product, ProductAndDiscount } from './store-product/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,9 @@ import { Product } from './store-product/product.model';
 export class ProductService {
   //products endpoints
   productsUrl = "http://localhost:7777/api/products";
+  productsUrl2 = "http://localhost:7777/combined/Disc/Products";
+  discountUrl = "http://localhost:7777/discounts";
+
 
   // add other endpoints below if needed
 
@@ -28,6 +31,10 @@ export class ProductService {
   getAllProductsService() : Observable<Product[]>{
     return this.http.get<Product[]>(this.productsUrl);
   }
+
+
+
+
   //Retrieve one Product
   getOneProductsService(productId : number) : Observable<Product>{
     return this.http.get<Product>(this.productsUrl+"/"+productId);
@@ -39,5 +46,8 @@ export class ProductService {
   }
 
   //------Will add more later for custom endpoints 
-
+    //get all Products from DB table
+    getAllDiscountsProductsService() : Observable<ProductAndDiscount[]>{
+      return this.http.get<ProductAndDiscount[]>(this.productsUrl2);
+    }
 }

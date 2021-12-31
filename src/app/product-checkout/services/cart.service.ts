@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Cart} from "../cart.model";
-import {Observable} from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Cart } from "../cart.model";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,14 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
 
-  updateCartService(cart: Cart): Observable<Cart> | null {
-    return null;
+  updateCartService(cart: Cart): Observable<Cart> {
+    return this.http.put<Cart>(this.baseUrl, cart);
   }
 
-  //This is a test
+
+  addCartService(cart: Cart): Observable<Cart> {
+    return this.http.post<Cart>(this.baseUrl, cart);
+  }
+
 
 }

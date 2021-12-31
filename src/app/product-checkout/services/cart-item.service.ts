@@ -10,20 +10,20 @@ import { Observable } from "rxjs";
 
 export class CartItemService {
 
-  baseUrl = "http://localhost:7777/api/cart-item";
+  baseUrl = "http://localhost:7777/api/cart-items";
 
   constructor(private http: HttpClient) { }
 
-  addNewItemService(item: CartItem): Observable<CartItem> | null {
-    return null;
+  addNewItemService(item: CartItem): Observable<CartItem>{
+    return this.http.post<CartItem>(this.baseUrl, item);
   }
 
-  updateItemService(item: CartItem): Observable<CartItem> | null {
-    return null;
+  updateItemService(item: CartItem): Observable<CartItem>{
+    return this.http.put<CartItem>(this.baseUrl, item);
   }
 
-  removeItemService(item: CartItem): Observable<CartItem> | null {
-    return null;
+  removeItemService(itemId: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.baseUrl + "/" + itemId);
   }
 
 
