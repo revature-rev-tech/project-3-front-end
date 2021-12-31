@@ -63,6 +63,45 @@ export class StoreProductComponent implements OnInit {
     this.loadProducts();
   }
 
+  filterByCategory(){
+
+
+    //Declare Variables
+    let input       : any;
+    let filter      : any;
+    let p           : any;
+    let ul          : any;
+    let li          : any;
+    let i           : any;
+    let a           : any;
+    let txtValue    : any;
+    
+  
+  
+    //let input , filter, p, a, ul, li, i , txtValue : string;
+    input = document.getElementById('myInput');
+    filter = input?.nodeValue?.toLocaleUpperCase();
+  
+    ul = document.getElementById('myUl');
+    li = ul?.getElementsByTagName('li');
+  
+     // Loop through all list items, and hide those 
+     //that don't match the search query.
+  
+     for (let i = 0; i < li.length; i++) {
+  
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      //
+      if(txtValue.toLocaleUpperCase().indexOf(filter)> -1) {
+        li[i].style.display = "";
+      } else{
+        li[i].style.display = "none";
+      }
+    }
+  
+    }
+
   //Load all all Products
   loadProducts() {
     this.productService.getAllProductsService().subscribe(
