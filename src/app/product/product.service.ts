@@ -3,6 +3,7 @@ import {HttpClient, HttpRequest, HttpHeaders, HttpEvent} from '@angular/common/h
 import { Observable} from 'rxjs';
 import { Discount, Product, ProductAndDiscount } from './store-product/product.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,6 +46,7 @@ export class ProductService {
   }
 
   //------Will add more later for custom endpoints 
+  
     //get all Discounted Products from DB table
     getAllDiscountsProductsService() : Observable<ProductAndDiscount[]>{
       return this.http.get<ProductAndDiscount[]>(this.productsUrl2);
@@ -61,4 +63,5 @@ export class ProductService {
     deleteDiscountService(discountId : number) : Observable<Discount>{
       return this.http.delete<Discount>(this.discountUrl+"/remove/"+discountId);
     }
+
 }
