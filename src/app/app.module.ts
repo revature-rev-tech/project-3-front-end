@@ -30,14 +30,14 @@ import { HomeComponent } from './home/home.component';
     LogoutComponent,
     CheckoutComponent,
     ProductPageComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
