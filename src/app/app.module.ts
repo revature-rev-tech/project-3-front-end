@@ -28,6 +28,7 @@ import { ProductPageComponent } from './product-checkout/product-page/product-pa
     CustomerComponent,
     LoginComponent,
     LogoutComponent,
+    CheckoutComponent,
     ProductPageComponent
   ],
   imports: [
