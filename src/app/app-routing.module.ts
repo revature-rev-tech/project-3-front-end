@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: "checkout", component: CheckoutComponent, canActivate: [AdminGuard]},
   { path: "admin", component: AdminComponent},
   { path: '', redirectTo: 'product', pathMatch: 'full'}
-
+]
 
 @NgModule({
   imports: [
