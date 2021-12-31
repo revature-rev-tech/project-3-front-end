@@ -16,7 +16,7 @@ export class CartAndItemsService {
 
   getCartAndItemsService(cartId: number): Observable<CartAndItems> {
     return this.http.get<CartAndItems>(this.baseUrl + "/" + cartId);
-  }
+
 
   getCartAndItemsWithUserIdService(userId: number): Observable<CartAndItems> {
     return this.http.get<CartAndItems>(this.base2Url + "/" + userId);
