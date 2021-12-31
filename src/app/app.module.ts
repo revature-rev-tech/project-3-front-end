@@ -31,7 +31,6 @@ import { HomeComponent } from './home/home.component';
     CheckoutComponent,
     ProductPageComponent,
     HomeComponent
-
   ],
   imports: [
     BrowserModule,
