@@ -22,8 +22,7 @@ const routes: Routes = [
   { path: "hello-customer", component: HelloCustomerComponent, canActivate: [AdminGuard]},
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard]},
   { path: "customer", component: CustomerComponent, canActivate: [AdminGuard]},
-  { path: "product-page", component: ProductPageComponent, canActivate: [AdminGuard]},
-  { path: "checkout", component: CheckoutComponent, canActivate: [AdminGuard]},
+  { path: "checkout", component: CheckoutComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({
