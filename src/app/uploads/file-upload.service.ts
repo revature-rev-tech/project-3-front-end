@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 export class FileUploadService {
 
   public files: any[] = [];
-  baseUrl = "/file";
+  baseUrl = "http://localhost:7777/file";
 
 
   constructor(private http: HttpClient) {
@@ -22,13 +22,8 @@ export class FileUploadService {
   onUpload(image: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', image);
-    return this.http.post<any>(this.baseUrl + '/upload', {
-      headers: new HttpHeaders({
-        'Accept': 'text/html, application/xhtml+xml, */*',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }),
-      responseType: 'text'
-    });
+    console.log("file-upload Service"+image);
+    return this.http.post<any>(this.baseUrl + '/upload', formData);
   }
 
   // const formData = new FormData();
@@ -45,3 +40,11 @@ export class FileUploadService {
 //     'Content-Type': 'application/json'
 //   })
 // });
+
+// {
+//   headers: new HttpHeaders({
+//     'Accept': 'text/html, application/xhtml+xml, */*',
+//     'Content-Type': 'application/x-www-form-urlencoded'
+//   }),
+//   responseType: 'text'
+// }
