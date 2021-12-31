@@ -10,6 +10,8 @@ export class ProductService {
   //products endpoints
   productsUrl = "http://localhost:7777/api/products";
   productsUrl2 = "http://localhost:7777/combined/Disc/Products";
+  discountUrl = "http://localhost:7777/discounts";
+
 
   // add other endpoints below if needed
 

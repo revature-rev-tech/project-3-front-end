@@ -13,6 +13,7 @@ import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
 import { CheckoutComponent } from './product-checkout/checkout/checkout.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './users/register/register.component';
 
 
 const routes: Routes = [
@@ -25,23 +26,23 @@ const routes: Routes = [
   { path: "checkout", component: CheckoutComponent },
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
-  { path: 'product', component: StoreProductComponent },
-
+  { path: 'products', component: StoreProductComponent },
+  { path: "register", component: RegisterComponent },
   { path: "hello-admin", component: HelloAdminComponent, canActivate: [AdminGuard] },
   { path: "hello-customer", component: HelloCustomerComponent, canActivate: [AdminGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: "customer", component: CustomerComponent, canActivate: [AdminGuard] },
   { path: "home", component: HomeComponent },
   { path: "product-page", component: ProductPageComponent, canActivate: [AdminGuard] },
+  // { path: "profile", component: ProfileComponent, canActivate: [AdminGuard]},
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes, {
-      useHash: true
-    })
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })
