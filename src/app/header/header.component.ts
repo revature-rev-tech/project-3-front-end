@@ -23,17 +23,18 @@ export class HeaderComponent implements OnInit {
       this.roles = user.roles;
       this.username = user.username;
 
+    }
   }
 
   // btnClick(){
   //   this.router.navigate(['/checkout']);
   // }
 
-  // logout(): void {
-  //   this.tokenStorageService.signOut();
-  //   window.location.reload();
-  // }
-
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
   }
+
+
 }
 
