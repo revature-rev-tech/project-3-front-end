@@ -15,6 +15,11 @@ import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
 import { ProductPageComponent } from './product-checkout/product-page/product-page.component';
 import { HomeComponent } from './home/home.component';
+import { GamesComponent } from './product/games/games.component';
+import { CellPhonesComponent } from './product/cell-phones/cell-phones.component';
+import { TelevisionComponent } from './product/television/television.component';
+import { HeadPhonesComponent } from './product/head-phones/head-phones.component';
+import { ComputersComponent } from './product/computers/computers.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,12 @@ import { HomeComponent } from './home/home.component';
     LogoutComponent,
     CheckoutComponent,
     ProductPageComponent,
-    HomeComponent
+    HomeComponent,
+    GamesComponent,
+    CellPhonesComponent,
+    TelevisionComponent,
+    HeadPhonesComponent,
+    ComputersComponent
   ],
   imports: [
     BrowserModule,
