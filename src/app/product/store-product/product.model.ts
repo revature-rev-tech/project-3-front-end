@@ -31,3 +31,12 @@ export class ProductAndDiscount {
         
     // }
 }
+
+/*Discount Model*/
+export class Discount{
+
+    discountId: number = 0;
+    productId: number = 0;
+    discountDescription: string = "";
+    discountPercentage: number = 0.0;
+}

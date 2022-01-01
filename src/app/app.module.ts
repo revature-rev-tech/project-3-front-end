@@ -33,6 +33,7 @@ import { HeaderComponent } from './header/header.component';
     ProductPageComponent,
     HomeComponent,
     RegisterComponent
+
   ],
   imports: [
     BrowserModule,
