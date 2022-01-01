@@ -14,6 +14,8 @@ import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './users/register/register.component';
+import { ProfileComponent } from './users/profile/profile.component';
+
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
