@@ -13,6 +13,7 @@ import { CustomerComponent } from './users/customer/customer.component';
 import { LoginComponent } from './users/login/login.component';
 import { LogoutComponent } from './users/logout/logout.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './users/register/register.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -24,19 +25,20 @@ const routes: Routes = [
   { path: "checkout", component: CheckoutComponent },
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
+  { path: "register", component: RegisterComponent },
+  // { path: "profile", component: ProfileComponent, canActivate: [AdminGuard]},
   { path: 'product', component: StoreProductComponent },
   { path: '', redirectTo: 'product', pathMatch: 'full'},
   { path: "home", component: HomeComponent },
   { path: "product-page", component: ProductPageComponent, canActivate: [AdminGuard] }
+
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes, {
-      useHash: true
-    })
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })
