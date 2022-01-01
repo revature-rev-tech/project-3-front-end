@@ -25,9 +25,10 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
   { path: 'product', component: StoreProductComponent },
-  { path: '', redirectTo: 'product', pathMatch: 'full'}
+  { path: '', redirectTo: 'product', pathMatch: 'full'},
   { path: "home", component: HomeComponent },
   { path: "product-page", component: ProductPageComponent, canActivate: [AdminGuard] }
+];
 
 @NgModule({
   imports: [
