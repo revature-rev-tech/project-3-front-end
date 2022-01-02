@@ -118,6 +118,7 @@ export class AdminComponent implements OnInit {
     this.newProduct.productCategory = this.formValue.value.product_category;
     this.newProduct.productDescription = this.formValue.value.product_description;
     this.newProduct.productQty = this.formValue.value.product_qty;
+    // this.newProduct.imageUrl = this.formValue.value.image_url;
 
     // Let's post the data through the post request in service
       this.productService.addProductsService(this.newProduct).subscribe(

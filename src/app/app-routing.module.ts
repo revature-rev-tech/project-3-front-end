@@ -15,6 +15,7 @@ import { LogoutComponent } from './users/logout/logout.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './users/register/register.component';
 import { ProfileComponent } from './users/profile/profile.component';
+import { GamesComponent } from '../app/games/games.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: "logout", component: LogoutComponent },
   { path: "hello-admin", component: HelloAdminComponent, canActivate: [AdminGuard] },
   { path: "hello-customer", component: HelloCustomerComponent, canActivate: [AdminGuard] },
-  { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
+  { path: "admin", component: AdminComponent},
+  { path: "games", component: GamesComponent},
   { path: "customer", component: CustomerComponent, canActivate: [AdminGuard] },
   { path: "checkout", component: CheckoutComponent },
   { path: "login", component: LoginComponent },

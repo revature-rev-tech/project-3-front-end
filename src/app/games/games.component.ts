@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 // import * as internal from 'stream';
-import { ProductService } from '../product.service';
-import { Product } from '../store-product/product.model';
-import { ProductAndDiscount } from '../store-product/product.model';
+import { ProductService } from '../product/product.service';
+import { Product } from '../product/store-product/product.model';
+import { ProductAndDiscount } from '../product/store-product/product.model';
 
 @Component({
   selector: 'app-games',
@@ -60,7 +60,7 @@ export class GamesComponent implements OnInit {
 
 
    this.loadDiscountedProducts();
-   this.loadProducts();
+   
  }
 
  //Load all all Products
@@ -94,7 +94,7 @@ export class GamesComponent implements OnInit {
      (response) => {
        this.allDiscountProducts = response;
        //-- For Testing Remove later
-       console.log("James testing");
+       this.loadProducts();
        console.log(response);
      },
      (error) => {

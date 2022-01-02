@@ -31,7 +31,7 @@
         <h6 style="font-size:Larger;">Category:</h6>
         <br>
         <ul id="myUl"> 
-            <li><a href="#">Games</a> </li>
+            <li><a href="games">Games</a> </li>
             <br><br>
             <li> <a href="#">CellPhones</a>  </li>
             <br><br>
@@ -57,20 +57,23 @@
             <br><br>   
     </div>
     <div class='container-fluid'>
-        <div class="card " *ngFor="let row of allDiscountProducts">
+        <div *ngFor="let row of allDiscountProducts">
+        <div class="card" *ngIf="row.productCategory == 'Games' ">
             <!-- Place holder image to be removed later -->
-            <div class="zoom">
+            <!-- <div > -->
+            <div class="zoom" >
                 <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
 
                 <!-- <img class="imgResponsive" class='mx-auto img-thumbnail' src="http://www.itpamembers.org/wp-content/uploads/2012/06/special.png"
 
                     width="auto" height="auto" /> -->
-            </div>
-
+            <!-- </div> -->
+        </div>
+            <div *ngIf="row.productCategory== 'Games' ">
             <div class="card-body text-center mx-auto">
 
-                <div class='cvp'>
+                <div class='cvp' >
 
 
                     <h6 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
@@ -93,7 +96,10 @@
                 </div>
             </div>
         </div>
-        <div class="card " *ngFor="let row of allProducts">
+        </div>
+    </div>
+    <div *ngFor="let row of allProducts">
+        <div class="card" *ngIf="row.productCategory=='Games'" >
             <!-- Place holder image to be removed later -->
             <div class="zoom">
                 <!-- <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="https://i.imgur.com/pjITBzX.jpg"
@@ -126,6 +132,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <br><br>
     <div class="footer">
