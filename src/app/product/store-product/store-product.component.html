@@ -17,38 +17,44 @@
         </div>
 
     </div>
+
     <hr>
     <br><br> <br><br>
     <hr>
+
     <br><br><br><br>
 
-    <div class="left-side-div">
+    
+    <div class="left-side-div" >
         <h2>Browse</h2>
         <hr>
         <h6 style="font-size:Larger;">Category:</h6>
         <br>
-        <a href="#">Games</a>
-        <br><br>
-        <a href="#">CellPhones</a>
-        <br><br>
-        <a href="#">TVs</a>
-        <br><br>
-        <a href="#">Head Phones</a>
-        <br><br>
-        <a href="#">PC Monitors</a>
-        <br><br>
-        <a href="#">Air Purifiers</a>
-        <br><br>
-        <a href="#">Phone Chargers</a>
-        <br><br>
-        <a href="#">Mini Fridges</a>
-        <br><br>
-        <a href="#">Desk Lamps</a>
-        <br><br>
-        <a href="#">Remote Controls</a>
-        <br><br>
-        <a href="#">Games Pads</a>
-        <br><br>
+        <ul id="myUl">
+            <li><a href="games">Games</a> </li>
+            <br><br>
+            <li> <a href="cell-phones">CellPhones</a> </li>
+            <br><br>
+            <li><a href="tv">TVs</a> </li>
+            <br><br>
+            <li> <a href="head-hones">Head Phones</a> </li>
+            <br><br>
+            <li> <a href="computers">Computers</a> </li>
+            <br><br>
+            <li> <a href="air-purifiers">Air Purifiers</a> </li>
+            <br><br>
+            <li> <a href="phone-chargers">Phone Chargers</a> </li>
+            <br><br>
+            <li> <a href="mini-friges">Mini Fridges</a> </li>
+            <br><br>
+            <li> <a href="desk-lamps">Desk Lamps</a> </li>
+            <br><br>
+            <li> <a href="remote-controllers">Remote Controllers</a> </li>
+            <br><br>
+            <li> <a href="game-pads">Games Pads</a> </li>
+
+        </ul>
+            <br><br>   
     </div>
     <div class='container-fluid'>
         <div class="card " *ngFor="let row of allDiscountProducts">
@@ -56,25 +62,21 @@
             <div class="zoom">
                 <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
-                    <!-- <img class="imgResponsive" class='mx-auto img-thumbnail' src="http://www.itpamembers.org/wp-content/uploads/2012/06/special.png"
+
+                <!-- <img class="imgResponsive" class='mx-auto img-thumbnail' src="http://www.itpamembers.org/wp-content/uploads/2012/06/special.png"
+
                     width="auto" height="auto" /> -->
             </div>
 
             <div class="card-body text-center mx-auto">
 
                 <div class='cvp'>
-                    <!-- 
-                     {{row.productId}}
-                     {{row.productName}}
-                     {{row.productCategory}}
-                     {{row.productDescription}}
-                     {{row.productCost | currency}}
-                     {{row.productQty}}
-                     {{row.productSku}}
-                     {{row.imageUrl}}
-                -->
-                    <h6  class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
-                    <p class="card-text">{{row.productCost*row.discountPercentage | currency }} <s>{{row.productCost | currency}}</s></p>
+
+
+                    <h6 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
+                    <p class="card-text">{{row.productCost-row.productCost*row.discountPercentage/100 | currency }} <s>{{row.productCost |
+                            currency}}</s></p>
+                    <p id="bold-category" class="card-text">{{row.productCategory}}</p>
                     <p class="card-text" class="parLength">{{row.productDescription}}</p>
                     <a href="#" class="btn details px-auto">
                         <h6>View Details</h6>
@@ -96,25 +98,17 @@
             <div class="zoom">
                 <!-- <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="https://i.imgur.com/pjITBzX.jpg"
                     width="auto" height="auto" /> -->
-                    <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
+                <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
             </div>
 
             <div class="card-body text-center mx-auto">
 
                 <div class='cvp'>
-                    <!-- 
-                     {{row.productId}}
-                     {{row.productName}}
-                     {{row.productCategory}}
-                     {{row.productDescription}}
-                     {{row.productCost | currency}}
-                     {{row.productQty}}
-                     {{row.productSku}}
-                     {{row.imageUrl}}
-                -->
                     <h1 class="card-title font-weight-bold" class="parLength">{{row.productName}}</h1>
                     <p class="card-text">{{row.productCost | currency}}</p>
+                    <p id="bold-category" class="card-text">{{row.productCategory}}</p>
+
                     <p class="card-text" class="p">{{row.productDescription}}</p>
                     <a href="#" class="btn details px-auto">
                         <h6>View Details</h6>
