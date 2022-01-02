@@ -55,6 +55,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'product', pathMatch: 'full'},
   { path: "home", component: HomeComponent },
   { path: "product-page", component: ProductPageComponent, canActivate: [AdminGuard] }
+  { path: "product-page/:productId", component: ProductPageComponent },
 
 ];
 
