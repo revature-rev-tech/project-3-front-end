@@ -37,7 +37,7 @@
             <br><br>
             <li><a href="tv">TVs</a> </li>
             <br><br>
-            <li> <a href="head-hones">Head Phones</a> </li>
+            <li> <a href="head-phones">Head Phones</a> </li>
             <br><br>
             <li> <a href="computers">Computers</a> </li>
             <br><br>
@@ -57,24 +57,21 @@
             <br><br>   
     </div>
     <div class='container-fluid'>
-        <div class="card " *ngFor="let row of allDiscountProducts">
-            <!-- Place holder image to be removed later -->
-            <div class="zoom">
+        <span  *ngFor="let row of allDiscountProducts">
+        <div class="card" *ngIf="row.productCategory == 'Games' ">
+            <div class="zoom" >
                 <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
 
-                <!-- <img class="imgResponsive" class='mx-auto img-thumbnail' src="http://www.itpamembers.org/wp-content/uploads/2012/06/special.png"
-
-                    width="auto" height="auto" /> -->
             </div>
-
+            <div *ngIf="row.productCategory== 'Games' ">
             <div class="card-body text-center mx-auto">
 
-                <div class='cvp'>
+                <div class='cvp' >
 
 
                     <h6 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
-                    <p class="card-text">{{row.productCost-row.productCost*row.discountPercentage/100 | currency }} <s>{{row.productCost |
+                    <p class="card-text">{{row.productCost-row.productCost*row.discountPercentage | currency }} <s>{{row.productCost |
                             currency}}</s></p>
                     <p id="bold-category" class="card-text">{{row.productCategory}}</p>
                     <p class="card-text" class="parLength">{{row.productDescription}}</p>
@@ -93,11 +90,12 @@
                 </div>
             </div>
         </div>
-        <div class="card " *ngFor="let row of allProducts">
+        </div>
+    </span>
+    <span *ngFor="let row of allProducts">
+        <div class="card" *ngIf="row.productCategory=='Games'" >
             <!-- Place holder image to be removed later -->
             <div class="zoom">
-                <!-- <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="https://i.imgur.com/pjITBzX.jpg"
-                    width="auto" height="auto" /> -->
                 <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
             </div>
@@ -125,7 +123,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </span>
+</div>
 
     <br><br>
     <div class="footer">
