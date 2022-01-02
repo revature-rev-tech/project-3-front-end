@@ -60,7 +60,6 @@ export class StoreProductComponent implements OnInit {
 
 
     this.loadDiscountedProducts();
-    
   }
 
   //Load all all Products
@@ -95,6 +94,8 @@ export class StoreProductComponent implements OnInit {
       (response) => {
         this.allDiscountProducts = response;
         this.loadProducts();
+        //-- For Testing Remove later
+        console.log("James testing");
         console.log(response);
       },
       (error) => {

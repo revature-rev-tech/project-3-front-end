@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
   { path: "register", component: RegisterComponent },
-  { path: "profile", component: ProfileComponent, canActivate: [AdminGuard]},
+  { path: "profile", component: ProfileComponent },
   { path: 'product', component: StoreProductComponent },
   { path: '', redirectTo: 'product', pathMatch: 'full'},
   { path: "home", component: HomeComponent },
