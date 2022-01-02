@@ -24,8 +24,8 @@
 
     <br><br><br><br>
 
-
-    <div class="left-side-div">
+    
+    <div class="left-side-div" >
         <h2>Browse</h2>
         <hr>
         <h6 style="font-size:Larger;">Category:</h6>
@@ -54,24 +54,24 @@
             <li> <a href="game-pads">Games Pads</a> </li>
 
         </ul>
-        <br><br>
+            <br><br>   
     </div>
     <div class='container-fluid'>
         <span  *ngFor="let row of allDiscountProducts">
-        <div class="card" *ngIf="row.productCategory == 'Phones' ">
+        <div class="card" *ngIf="row.productCategory == 'Games' ">
             <div class="zoom" >
                 <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
 
             </div>
-            
+            <div *ngIf="row.productCategory== 'Games' ">
             <div class="card-body text-center mx-auto">
 
                 <div class='cvp' >
 
 
                     <h6 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
-                    <p class="card-text">{{row.productCost-row.productCost*row.discountPercentage/100 | currency }} <s>{{row.productCost |
+                    <p class="card-text">{{row.productCost-row.productCost*row.discountPercentage | currency }} <s>{{row.productCost |
                             currency}}</s></p>
                     <p id="bold-category" class="card-text">{{row.productCategory}}</p>
                     <p class="card-text" class="parLength">{{row.productDescription}}</p>
@@ -89,25 +89,29 @@
                     <br /> <a href="#" class="btn cart px-auto">ADD TO CART</a>
                 </div>
             </div>
-        
+        </div>
         </div>
     </span>
     <span *ngFor="let row of allProducts">
-        <div class="card" *ngIf="row.productCategory=='Phones'" >
+        <div class="card" *ngIf="row.productCategory=='Games'" >
+            <!-- Place holder image to be removed later -->
             <div class="zoom">
                 <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
             </div>
+
             <div class="card-body text-center mx-auto">
 
                 <div class='cvp'>
                     <h1 class="card-title font-weight-bold" class="parLength">{{row.productName}}</h1>
                     <p class="card-text">{{row.productCost | currency}}</p>
                     <p id="bold-category" class="card-text">{{row.productCategory}}</p>
+
                     <p class="card-text" class="p">{{row.productDescription}}</p>
                     <a href="#" class="btn details px-auto">
                         <h6>View Details</h6>
                     </a>
+
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-info-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />

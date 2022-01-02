@@ -58,7 +58,7 @@
     </div>
     <div class='container-fluid'>
         <span  *ngFor="let row of allDiscountProducts">
-        <div class="card" *ngIf="row.productCategory == 'Phones' ">
+        <div class="card" *ngIf="row.productCategory == 'Desk Lamps' ">
             <div class="zoom" >
                 <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
@@ -68,7 +68,6 @@
             <div class="card-body text-center mx-auto">
 
                 <div class='cvp' >
-
 
                     <h6 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
                     <p class="card-text">{{row.productCost-row.productCost*row.discountPercentage/100 | currency }} <s>{{row.productCost |
@@ -93,7 +92,7 @@
         </div>
     </span>
     <span *ngFor="let row of allProducts">
-        <div class="card" *ngIf="row.productCategory=='Phones'" >
+        <div class="card" *ngIf="row.productCategory=='Desk Lamps'" >
             <div class="zoom">
                 <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                     width="auto" height="auto" />
@@ -127,3 +126,5 @@
         <p>RevTech Store 2021</p>
     </div>
 </div><!-- Scroll-->
+
+

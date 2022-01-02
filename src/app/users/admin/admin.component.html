@@ -15,14 +15,10 @@
         <th scope="col">Product Id </th>
         <th scope="col">Product Name</th>
         <th scope="col">Product Category</th>
-        <!-- <th scope="col">Product  Description</th> -->
         <th scope="col">Product Percentage</th>
         <th scope="col">Product Cost</th>
-        <!-- <th scope="col">Product  Percentage</th> -->
         <th scope="col">Product Quantity</th>
         <th scope="col">Product SKU</th>
-        <!-- <th scope="col">Product  Discount Description</th> -->
-        <!-- update  image with S3 Image Feature here -->
 
         <th scope="col">Product Image</th>
       </tr>
@@ -32,19 +28,12 @@
         <td> {{row.productId}}</td>
         <td>{{row.productName}}</td>
         <td>{{row.productCategory}}</td>
-        <!-- <td>
-                          Div is for wrapping up long text
-                        in table cell 
-                        <div style="width: 300px; word-wrap: break-word;">
-                            {{row.productDescription}}</div> 
-                    </td> -->
         <td>%{{row.discountPercentage}}</td>
-        <td>{{row.productCost-row.productCost*row.discountPercentage | currency }}</td>
-        <!-- <td>{{row.product | currency}}</td> -->
+        <td>{{row.productCost-row.productCost*row.discountPercentage/100 | currency }}</td>
         <td>{{row.productQty}}</td>
         <td>{{row.productSku}}</td>
         <td>{{row.imageUrl}}</td>
-        <!-- add more if needed-->
+
         <td> <button (click)="onDiscountEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
             data-bs-target="#exampleModal3" class="btn btn-info">Edit Discount</button>
         </td>
@@ -57,17 +46,14 @@
         <td>{{row.productName}}</td>
         <td>{{row.productCategory}}</td>
         <td>
-          <!-- Div is for wrapping up long text
-                        in table cell-->
-          <!-- <div style="width: 300px; word-wrap: break-word;">
-                            {{row.productDescription}}</div> -->
+
         </td>
         <td>{{row.productCost | currency}}</td>
-        <!-- <td>{{row.product | currency}}</td> -->
+
         <td>{{row.productQty}}</td>
         <td>{{row.productSku}}</td>
         <td>{{row.imageUrl}}</td>
-        <!-- add more if needed-->
+
         <td> <button (click)="onEditRow(row)" type="button" class="btn btn-success" data-bs-toggle="modal"
             data-bs-target="#exampleModal" class="btn btn-info">Edit Product</button>
         </td>
@@ -105,7 +91,7 @@
             </div>
             <div class="mb-3">
               <label for="product_cost" class="form-label">Product Cost</label>
-              <input type="text" formControlName="product_cost" class="form-control" id="InputProductCost"
+              <input type="number" formControlName="product_cost" class="form-control" id="InputProductCost"
                 aria-describedby="productCostHelp">
             </div>
             <div class="mb-3">
@@ -114,9 +100,7 @@
                 aria-describedby="productQtyHelp">
             </div>
             <div class="mb-3">
-              <!-- <label for="image_url" class="form-label">Product Img Url</label>
-                <input type="text" formControlName="image_url" class="form-control" id="InputProductImgUrl "
-                  aria-describedby="productImgUrlHelp"> -->
+
               <label for="image_url" class="form-label"> Select Img File</label>
               <input #imageInput type="file" formControlName="image_url"
                 class="form-control" id="InputProductImgUrl" aria-describedby="productImgUrlHelp" accept="image/*"
@@ -129,14 +113,7 @@
                 id="InputProductDescription " aria-describedby="productDescriptionHelp">
                   </textarea>
             </div>
-            <!--  add input text more fields later if needed
-              <div class="mb-3">
-                <label for="product_" class="form-label">Product </label>
-                <input type="text" formControlName="product_" class="form-control" id="InputProduct "
-                  aria-describedby="product Help">
-              </div>
-              -->
-            <!-- Connect to S3 Image Feature for uploading -->
+
           </form>
         </div><!-- modal div -->
         <div class="modal-footer">
@@ -179,7 +156,7 @@
             </div>
             <div class="mb-3">
               <label for="product_cost" class="form-label">Product Cost</label>
-              <input type="text" formControlName="product_cost" class="form-control" id="InputProductCost"
+              <input type="number" formControlName="product_cost" class="form-control" id="InputProductCost"
                 aria-describedby="productCostHelp">
             </div>
             <div class="mb-3">
@@ -188,9 +165,6 @@
                 aria-describedby="productQtyHelp">
             </div>
             <div class="mb-3">
-              <!-- <label for="image_url" class="form-label">Product Img Url</label>
-              <input type="text" formControlName="image_url" class="form-control" id="InputProductImgUrl "
-                aria-describedby="productImgUrlHelp"> -->
               <label for="image_url" class="form-label"> Select Img File</label>
               <input #imageInput type="file" formControlName="image_url" class="form-control" id="InputProductImgUrl"
                 aria-describedby="productImgUrlHelp" accept="image/*">
@@ -201,28 +175,12 @@
                 id="InputProductDescription " aria-describedby="productDescriptionHelp">
                 </textarea>
             </div>
-            <!--  add input text more fields later if needed
-            <div class="mb-3">
-              <label for="product_" class="form-label">Product </label>
-              <input type="text" formControlName="product_" class="form-control" id="InputProduct "
-                aria-describedby="product Help">
-            </div>
-            -->
-            <!-- Connect to S3 Image Feature for uploading -->
           </form>
         </div><!-- modal div -->
         <div class="modal-footer">
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" (click)="addProducts()" (click)="uploadImage(imageInput)"
             class="btn btn-primary">Add</button>
-          <!-- <button type="button" (click) = "addDiscountProducts()" class="btn btn-primary">Add Discount</button> -->
-          <!-- <button type="button"
-         class="btn btn-info"
-         data-bs-toggle="modal"
-          data-bs-target="#exampleModal2">
-          Discount Info
-      </button>
-        <button type="button" (click)="updateProducts()" class="btn btn-primary">Update</button> -->
         </div>
       </div>
     </div>
@@ -239,8 +197,8 @@
         <div class="modal-body">
           <form [formGroup]="formValueDiscount">
             <div class="mb-3">
-              <label for="product_percentage" class="form-label">Product Discount Percentage</label>
-              <input type="text" formControlName="discount_percentage" class="form-control" id="InputProductPercentage "
+              <label for="product_percentage" class="form-label">Product Discount Percentage (%)</label>
+              <input type="number" formControlName="discount_percentage" class="form-control" id="InputProductPercentage "
                 aria-describedby="productPercentageHelp">
             </div>
             <div class="mb-3">
@@ -270,8 +228,8 @@
         <div class="modal-body">
           <form [formGroup]="formValueDiscount">
             <div class="mb-3">
-              <label for="product_percentage" class="form-label">Product Discount Percentage</label>
-              <input type="text" formControlName="discount_percentage" class="form-control" id="InputProductPercentage "
+              <label for="product_percentage" class="form-label">Product Discount Percentage (%)</label>
+              <input type="number" formControlName="discount_percentage" class="form-control" id="InputProductPercentage "
                 aria-describedby="productPercentageHelp">
             </div>
             <div class="mb-3">

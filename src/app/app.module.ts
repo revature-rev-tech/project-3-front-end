@@ -16,6 +16,18 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './users/register/register.component';
 import { LoginComponent } from './users/login/login.component';
 import { HeaderComponent } from './header/header.component';
+import { GamesComponent } from './games/games.component';
+import { ComputersComponent } from './product/computers/computers.component';
+import { CellPhonesComponent } from './product/cell-phones/cell-phones.component';
+import { HeadPhonesComponent } from './product/head-phones/head-phones.component';
+import { TelevisionComponent } from './product/television/television.component';
+import { PhoneChargerComponent } from './product/phone-charger/phone-charger.component';
+import { RemoteControllersComponent } from './product/remote-controllers/remote-controllers.component';
+import { MiniFrigesComponent } from './product/mini-friges/mini-friges.component';
+import { DeskLampComponent } from './product/desk-lamp/desk-lamp.component';
+import { GamePadsComponent } from './product/game-pads/game-pads.component';
+import { AirPurifiersComponent } from './product/air-purifiers/air-purifiers.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +44,19 @@ import { HeaderComponent } from './header/header.component';
     CheckoutComponent,
     ProductPageComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    GamesComponent,
+    ComputersComponent,
+    CellPhonesComponent,
+    HeadPhonesComponent,
+    TelevisionComponent,
+    PhoneChargerComponent,
+    RemoteControllersComponent,
+    MiniFrigesComponent,
+    DeskLampComponent,
+    GamePadsComponent,
+    AirPurifiersComponent,
+    
 
   ],
   imports: [

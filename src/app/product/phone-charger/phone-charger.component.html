@@ -58,7 +58,7 @@
     </div>
     <div class='container-fluid'>
         <span *ngFor="let row of allDiscountProducts">
-            <div class="card" *ngIf="row.productCategory == 'Computers' ">
+            <div class="card" *ngIf="row.productCategory == 'Phone Chargers' ">
                 <div class="zoom">
                     <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                         width="auto" height="auto" />
@@ -94,7 +94,7 @@
             </div>
         </span>
         <span *ngFor="let row of allProducts">
-            <div class="card" *ngIf="row.productCategory=='Computers'">
+            <div class="card" *ngIf="row.productCategory=='Phone Chargers'">
                 <div class="zoom">
                     <img id="image-size" class="imgResponsive" class='mx-auto img-thumbnail' src="{{row.imageUrl}}"
                         width="auto" height="auto" />

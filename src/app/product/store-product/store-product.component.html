@@ -30,29 +30,29 @@
         <hr>
         <h6 style="font-size:Larger;">Category:</h6>
         <br>
-        <ul id="myUl"> 
-            <li><a href="#">Games</a> </li>
+        <ul id="myUl">
+            <li><a href="games">Games</a> </li>
             <br><br>
-            <li> <a href="#">CellPhones</a>  </li>
+            <li> <a href="cell-phones">CellPhones</a> </li>
             <br><br>
-            <li><a href="#">TVs</a>  </li>
+            <li><a href="tv">TVs</a> </li>
             <br><br>
-            <li> <a href="#">Head Phones</a>  </li>      
+            <li> <a href="head-hones">Head Phones</a> </li>
             <br><br>
-            <li>  <a href="#">Computers</a>  </li>
+            <li> <a href="computers">Computers</a> </li>
             <br><br>
-            <li> <a href="#">Air Purifiers</a> </li>
+            <li> <a href="air-purifiers">Air Purifiers</a> </li>
             <br><br>
-            <li> <a href="#">Phone Chargers</a> </li>
+            <li> <a href="phone-chargers">Phone Chargers</a> </li>
             <br><br>
-            <li> <a href="#">Mini Fridges</a>  </li>
+            <li> <a href="mini-friges">Mini Fridges</a> </li>
             <br><br>
-            <li> <a href="#">Desk Lamps</a> </li>
+            <li> <a href="desk-lamps">Desk Lamps</a> </li>
             <br><br>
-            <li> <a href="#">Remote Controls</a>  </li>
+            <li> <a href="remote-controllers">Remote Controllers</a> </li>
             <br><br>
-            <li> <a href="#">Games Pads</a>  </li>
-           
+            <li> <a href="game-pads">Games Pads</a> </li>
+
         </ul>
             <br><br>   
     </div>
@@ -74,7 +74,7 @@
 
 
                     <h6 class="card-title font-weight-bold" class="parLength"> {{row.productName}}</h6>
-                    <p class="card-text">{{row.productCost-row.productCost*row.discountPercentage | currency }} <s>{{row.productCost |
+                    <p class="card-text">{{row.productCost-row.productCost*row.discountPercentage/100 | currency }} <s>{{row.productCost |
                             currency}}</s></p>
                     <p id="bold-category" class="card-text">{{row.productCategory}}</p>
                     <p class="card-text" class="parLength">{{row.productDescription}}</p>
