@@ -31,10 +31,12 @@
                                 <h6>Contact shop</h6>
                             </div>
                             <div class="d-flex flex-row align-items-start ">
-                                <select class="form-select " aria-label="Default select example"
-                                    (change)="changequantity($event, cartcheckout)">
-                                    <option selected>{{cartcheckout.cartQty}}</option>
-                                    <ng-container *ngFor="let itemN of itemNum">
+                                <select class="form-select " aria-label="Default select example" (change)="changeQuantity(cartcheckout, $event.target)">
+                                    <option
+                                      id="itemQty"
+                                      name="itemQty"
+                                      selected>{{cartcheckout.cartQty}}</option>
+                                    <ng-container *ngFor="let itemN of itemNum" >
                                         <option *ngIf="itemN <= cartcheckout.productAndDiscount.productQty"
                                             [value]="itemN">
                                             {{itemN}}
@@ -43,16 +45,10 @@
                                 </select>
 
                             </div>
-                            <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
-                                *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 1.0 ">
-                                ${{cartcheckout.productAndDiscount.productCost | number :'1.2-2'}} </h6>
-                            <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto "
-                                *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
-                                ${{ ( cartcheckout.productAndDiscount.productCost -
-                                ((cartcheckout.productAndDiscount.discountPercentage / 100) *
-                                (cartcheckout.productAndDiscount.productCost * cartcheckout.cartQty ))) | number :
-                                '1.2-2' }} </h6>
-                            <br>
+                            <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto " *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 1.0 ">
+                                ${{calculateTotalCost(cartcheckout, calculateDiscountedItemCost) | number :'1.2-2'}} </h6>
+                            <h6 class="d-flex flex-row item-sale-price align-items-end ml-auto " *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
+                                ${{(cartcheckout.productAndDiscount.productCost-((cartcheckout.productAndDiscount.discountPercentage/100)*cartcheckout.productAndDiscount.productCost))| number :'1.2-2'}} </h6>
 
                             <h6 class="item-old-price"
                                 *ngIf=" cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
@@ -62,13 +58,12 @@
                                 [ngStyle]="{'visibility': 'hidden'}">
                                 $ {{cartcheckout.productAndDiscount.productCost}}</h6><br>
 
-                            <div class="item-decrription "
-                                *ngIf="cartcheckout.productAndDiscount.discountDescription != null ">
-                                {{cartcheckout.productAndDiscount.discountDescription }}</div> <br>
 
-                            <div class="item-decrription "
-                                *ngIf="cartcheckout.productAndDiscount.discountDescription == null "
-                                [ngStyle]="{'visibility': 'hidden'}">
+                            <!-- <i style="font-size: 150% ; color: red; width: 200px; height: auto " class="fas fa-shopping-cart "></i> -->
+                            <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountPercentage > 1.0 ">
+                                {{"Discounted for:" + cartcheckout.productAndDiscount.discountDescription }}</div> <br>
+
+                            <div class="item-decrription " *ngIf="cartcheckout.productAndDiscount.discountPercentage < 1.0" [ngStyle]="{'visibility': 'hidden'}">
                                 {{cartcheckout.productAndDiscount.discountDescription }}</div> <br>
 
                             <h6 class="item-sale " *ngIf=" cartcheckout.productAndDiscount.discountPercentage < 1.0 "
@@ -116,7 +111,7 @@
                     <!-- ----------------------------------------------- -->
                     <div class="total-items d-flex flex-row ">
                         <h6 class="item-title d-flex flex-row mr-auto ">item(s) total</h6>
-                        <h6 class="item-amount d-flex flex-row ml-auto ">${{totalCost | number:'1.2-2' }}</h6>
+                        <h6 class="item-amount d-flex flex-row ml-auto ">${{getItemsTotal() | number:'1.2-2' }}</h6>
                     </div>
                     <!-- ------------------------------------------------- -->
                     <!-- <div class="shop-discount d-flex flex-row "> -->

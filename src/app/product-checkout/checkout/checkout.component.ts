@@ -28,6 +28,7 @@ export class CheckoutComponent implements OnInit {
   errorMsg: string = "";
   displayStyle: string = "";
   itemUpdating: CartItem = new CartItem();
+  userId: number = 0;
 
 
 
@@ -35,69 +36,73 @@ export class CheckoutComponent implements OnInit {
     private cartAndItemsService: CartAndItemsService, private transactionService: TransactionService,
     private authService: AuthService, private cartService: CartService, private cartItemService: CartItemService) { }
 
-
   ngOnInit(): void {
-    this.displayAllCarts();
-    this.totalCost = 0;
-    this.getItemsTotal();
+    this.userId = this.authService.retrieveUser().userId;
+    this.displayAllCarts()
   }
 
 
   displayAllCarts() {
     //var cartId: any = this.activatedRoute.snapshot.paramMap.get("cartId");
-    this.cartAndItemsService.getCartAndItemsService(1).subscribe((response) => {
+    this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe((response) => {
       this.cartAndItems = response;
       this.totalCost = this.getItemsTotal()
-      console.log("total = " + this.totalCost.toFixed(2))
+      console.log("total = " + (this.totalCost).toFixed(2))
     }, error => {
       this.errorMsg = 'There was some internal error! Please try again later!';
       console.log(error);
     });
   }
 
-
   getItemsTotal(): any {
+    let total = 0;
     this.cartAndItems.cartItems.forEach((value, index) => {
-      if (value.productAndDiscount.discountPercentage < 1.0) {
-        this.total += value.productAndDiscount.productCost
-      } else {
-        this.total += value.productAndDiscount.productCost -
-          ((value.productAndDiscount.discountPercentage / 100) * (value.productAndDiscount.productCost * value.cartQty))
+      total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
+    });
+    return total.toFixed(2);
+    // this.cartAndItemsId.cartItems.forEach((value, index) => {
+    //   console.log("discountPercentage" + value.productAndDiscount.discountPercentage)
+    //   console.log("productCost" + value.productAndDiscount.productCost)
+    //
+    //   if (value.productAndDiscount.discountPercentage < 1.0) {
+    //     this.total += value.productAndDiscount.productCost
+    //     console.log("my new total = " + this.total.toFixed(2))
+    //   } else {
+    //     this.total += value.productAndDiscount.productCost - ((value.productAndDiscount.discountPercentage / 100) * value.productAndDiscount.productCost)
+    //
+    //     console.log("my total = " + this.total.toFixed(2))
+    //   }
+    // })
+    // return this.total
+  }
+
+  remove(productId: number) {
+    this.cartItemService.removeItemService(productId).subscribe({
+      next: response => {
+        this.displayAllCarts();
+      },
+      error: err => {
+
       }
     })
-    return this.total
   }
 
+  changeQuantity(item: ItemProductAndDiscount, event: any) {
+    let newItem = new CartItem();
+    newItem.cartItemId = item.cartItemId;
+    newItem.cartId = item.cartId;
+    newItem.productId = item.productId;
+    newItem.cartQty = event.value;
+    this.cartItemService.updateItemService(newItem).subscribe({
+      next: response => {
+        this.displayAllCarts();
+      },
+      error: err => {
 
-  remove(cartItemId: number) {
-    this.cartItemService.removeItemService(cartItemId).subscribe((response) => {
-      response;
-      this.ngOnInit()
-    }, error => {
-      this.errorMsg = 'There was some internal error! Please try again later!';
+      }
     });
   }
 
-  changequantity(event: any, item: ItemProductAndDiscount) {
-
-    this.itemUpdating.cartItemId = item.cartItemId;
-    this.itemUpdating.cartId = item.cartId;
-    this.itemUpdating.cartQty = event.target.value;
-    this.itemUpdating.productId = item.productId;
-
-    this.cartItemService.updateItemService(this.itemUpdating).subscribe((response) => {
-      this.cartAndItems.cartItems[item.cartId].cartItemId = response.cartItemId;
-      this.cartAndItems.cartItems[item.cartId].cartId = response.cartId;
-      this.cartAndItems.cartItems[item.cartId].cartQty = response.cartQty;
-      this.cartAndItems.cartItems[item.cartId].productAndDiscount.productId = response.productId;
-      console.log(response);
-      this.ngOnInit();
-
-    }, error => {
-      this.errorMsg = 'There was some internal error! Please try again later!';
-    });
-
-  }
 
   proceedToCheckout() {
     this.cart.cartRemoved = true
@@ -129,5 +134,23 @@ export class CheckoutComponent implements OnInit {
     clearInterval();
   }
 
+  calculateDiscountedItemCost(product: ProductAndDiscount): number {
+    let cost = product.productCost;
+    let discountPercentage = product.discountPercentage;
+    return cost - (cost * (discountPercentage / 100));
+  }
+  calculateSingleItemCost(product: ProductAndDiscount): number {
+    return product.productCost;
+  }
+
+  calculateTotalSavings(product: ProductAndDiscount): number {
+    let cost = product.productCost;
+    let discountPercentage = product.discountPercentage;
+    return cost * (discountPercentage / 100);
+  }
+
+  calculateTotalCost(item: ItemProductAndDiscount, calcSingleItem: any) {
+    return item.cartQty * calcSingleItem(item.productAndDiscount);
+  }
 
 }
