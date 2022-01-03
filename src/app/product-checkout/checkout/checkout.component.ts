@@ -1,12 +1,15 @@
-import {Cart} from './../cart.model';
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {CartAndItems, ItemProductAndDiscount} from '../cart-and-items.model';
-import {ProductAndDiscount} from '../product-and-discount.model';
-import {CartAndItemsService} from '../services/cart-and-items.service';
-import {TransactionService} from '../services/transaction.service';
-import {CartItemService} from "../services/cart-item.service";
-import {CartItem} from "../cart-item";
+import { CartItem } from './../cart-item';
+import { Cart } from './../cart.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartAndItems, ItemProductAndDiscount } from '../cart-and-items.model';
+import { ProductAndDiscount } from '../product-and-discount.model';
+import { CartAndItemsService } from '../services/cart-and-items.service';
+import { TransactionService } from '../services/transaction.service';
+import { AuthService } from 'src/app/users/auth.service';
+import { CartService } from '../services/cart.service';
+import { Transaction } from '../transaction.model';
+import { CartItemService } from '../services/cart-item.service';
 
 @Component({
   selector: 'app-checkout',
@@ -16,17 +19,21 @@ import {CartItem} from "../cart-item";
 export class CheckoutComponent implements OnInit {
 
   productAndDiscount: ProductAndDiscount = new ProductAndDiscount();
-
-  cartAndItemsId: CartAndItems = new CartAndItems();
+  transaction: Transaction = new Transaction();
+  cartAndItems: CartAndItems = new CartAndItems();
   cart: Cart = new Cart();
   totalCost: number = 0
   total: number = 0
   itemNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   errorMsg: string = "";
   displayStyle: string = "";
+  itemUpdating: CartItem = new CartItem();
+
+
+
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-              private cartAndItemsService: CartAndItemsService, private transactionService: TransactionService,
-              private cartItemService: CartItemService) { }
+    private cartAndItemsService: CartAndItemsService, private transactionService: TransactionService,
+    private authService: AuthService, private cartService: CartService, private cartItemService: CartItemService) { }
 
   ngOnInit(): void {
 
@@ -37,8 +44,7 @@ export class CheckoutComponent implements OnInit {
   displayAllCarts() {
     //var cartId: any = this.activatedRoute.snapshot.paramMap.get("cartId");
     this.cartAndItemsService.getCartAndItemsService(1).subscribe((response) => {
-      this.cartAndItemsId = response;
-      console.log("discountDescription " + this.cartAndItemsId.cartItems[0].productAndDiscount.productName)
+      this.cartAndItems = response;
       this.totalCost = this.getItemsTotal()
       console.log("total = " + (this.totalCost).toFixed(2))
     }, error => {
@@ -49,7 +55,7 @@ export class CheckoutComponent implements OnInit {
 
   getItemsTotal(): any {
     let total = 0;
-    this.cartAndItemsId.cartItems.forEach((value, index) => {
+    this.cartAndItems.cartItems.forEach((value, index) => {
       total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
     });
     return total.toFixed(2);
@@ -96,17 +102,32 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+
   proceedToCheckout() {
-    this.displayStyle = "block";
-    this.cartAndItemsId.cartRemoved = true
-    this.cartAndItemsId.cartPaid = true
-
-
+    this.cart.cartRemoved = true
+    this.cart.cartPaid = true
+    this.cartService.updateCartService(this.cart).subscribe((response) => {
+      response;
+    }, error => {
+      this.errorMsg = 'There was some internal error! Please try again later!';
+    });
+    this.cart.userId = this.cartAndItems.userId
+    this.cartService.addCartService(this.cart).subscribe((response) => {
+      response;
+    }, error => {
+      this.errorMsg = 'There was some internal error! Please try again later!';
+    });
+    this.transaction.transactionId = this.cartAndItems.cartId
+    this.transactionService.sendTransaction(this.transaction).subscribe((response) => {
+    }, error => {
+      this.errorMsg = 'There was some internal error! Please try again later!';
+    });
     setInterval(() => {
       this.displayStyle = "none";
       this.router.navigate(['/home']);
     }, 5000);
   }
+
 
   ngOnDestroy() {
     clearInterval();
