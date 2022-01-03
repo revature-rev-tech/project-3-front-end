@@ -28,6 +28,7 @@ export class CheckoutComponent implements OnInit {
   errorMsg: string = "";
   displayStyle: string = "";
   itemUpdating: CartItem = new CartItem();
+  userId: number = 0;
 
 
 
@@ -36,14 +37,14 @@ export class CheckoutComponent implements OnInit {
     private authService: AuthService, private cartService: CartService, private cartItemService: CartItemService) { }
 
   ngOnInit(): void {
-
+    this.userId = this.authService.retrieveUser().userId;
     this.displayAllCarts()
   }
 
 
   displayAllCarts() {
     //var cartId: any = this.activatedRoute.snapshot.paramMap.get("cartId");
-    this.cartAndItemsService.getCartAndItemsService(1).subscribe((response) => {
+    this.cartAndItemsService.getCartAndItemsWithUserIdService(this.userId).subscribe((response) => {
       this.cartAndItems = response;
       this.totalCost = this.getItemsTotal()
       console.log("total = " + (this.totalCost).toFixed(2))
