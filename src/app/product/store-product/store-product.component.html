@@ -24,7 +24,7 @@
 
     <br><br><br><br>
 
-    
+
     <div class="left-side-div" >
         <h2>Browse</h2>
         <hr>
@@ -54,7 +54,7 @@
             <li> <a href="game-pads">Games Pads</a> </li>
 
         </ul>
-            <br><br>   
+            <br><br>
     </div>
     <div class='container-fluid'>
         <div class="card " *ngFor="let row of allDiscountProducts">
@@ -78,7 +78,7 @@
                             currency}}</s></p>
                     <p id="bold-category" class="card-text">{{row.productCategory}}</p>
                     <p class="card-text" class="parLength">{{row.productDescription}}</p>
-                    <a href="#" class="btn details px-auto">
+                    <a class="btn details px-auto" (click)="goToProduct(row.productId)">
                         <h6>View Details</h6>
                     </a>
 
@@ -110,7 +110,7 @@
                     <p id="bold-category" class="card-text">{{row.productCategory}}</p>
 
                     <p class="card-text" class="p">{{row.productDescription}}</p>
-                    <a href="#" class="btn details px-auto">
+                  <a class="btn details px-auto" (click)="goToProduct(row.productId)">
                         <h6>View Details</h6>
                     </a>
 
