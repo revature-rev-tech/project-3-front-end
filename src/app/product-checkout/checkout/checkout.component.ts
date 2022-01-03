@@ -1,10 +1,12 @@
-import { Cart } from './../cart.model';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CartAndItems, ItemProductAndDiscount } from '../cart-and-items.model';
-import { ProductAndDiscount } from '../product-and-discount.model';
-import { CartAndItemsService } from '../services/cart-and-items.service';
-import { TransactionService } from '../services/transaction.service';
+import {Cart} from './../cart.model';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CartAndItems, ItemProductAndDiscount} from '../cart-and-items.model';
+import {ProductAndDiscount} from '../product-and-discount.model';
+import {CartAndItemsService} from '../services/cart-and-items.service';
+import {TransactionService} from '../services/transaction.service';
+import {CartItemService} from "../services/cart-item.service";
+import {CartItem} from "../cart-item";
 
 @Component({
   selector: 'app-checkout',
@@ -23,11 +25,13 @@ export class CheckoutComponent implements OnInit {
   errorMsg: string = "";
   displayStyle: string = "";
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-    private cartAndItemsService: CartAndItemsService, private transactionService: TransactionService) { }
+              private cartAndItemsService: CartAndItemsService, private transactionService: TransactionService,
+              private cartItemService: CartItemService) { }
 
   ngOnInit(): void {
     this.displayAllCarts()
   }
+
 
   displayAllCarts() {
     //var cartId: any = this.activatedRoute.snapshot.paramMap.get("cartId");
@@ -35,7 +39,7 @@ export class CheckoutComponent implements OnInit {
       this.cartAndItemsId = response;
       console.log("discountDescription " + this.cartAndItemsId.cartItems[0].productAndDiscount.productName)
       this.totalCost = this.getItemsTotal()
-      console.log("total = " + this.totalCost.toFixed(2))
+      console.log("total = " + (this.totalCost).toFixed(2))
     }, error => {
       this.errorMsg = 'There was some internal error! Please try again later!';
       console.log(error);
@@ -43,29 +47,52 @@ export class CheckoutComponent implements OnInit {
   }
 
   getItemsTotal(): any {
+    let total = 0;
     this.cartAndItemsId.cartItems.forEach((value, index) => {
-      console.log("discountPercentage" + value.productAndDiscount.discountPercentage)
-      console.log("productCost" + value.productAndDiscount.productCost)
-
-      if (value.productAndDiscount.discountPercentage < 1.0) {
-        this.total += value.productAndDiscount.productCost
-        console.log("my new total = " + this.total.toFixed(2))
-      } else {
-        this.total += value.productAndDiscount.productCost - ((value.productAndDiscount.discountPercentage / 100) * value.productAndDiscount.productCost)
-
-        console.log("my total = " + this.total.toFixed(2))
-      }
-    })
-    return this.total
+      total += this.calculateTotalCost(value, this.calculateDiscountedItemCost);
+    });
+    return total.toFixed(2);
+    // this.cartAndItemsId.cartItems.forEach((value, index) => {
+    //   console.log("discountPercentage" + value.productAndDiscount.discountPercentage)
+    //   console.log("productCost" + value.productAndDiscount.productCost)
+    //
+    //   if (value.productAndDiscount.discountPercentage < 1.0) {
+    //     this.total += value.productAndDiscount.productCost
+    //     console.log("my new total = " + this.total.toFixed(2))
+    //   } else {
+    //     this.total += value.productAndDiscount.productCost - ((value.productAndDiscount.discountPercentage / 100) * value.productAndDiscount.productCost)
+    //
+    //     console.log("my total = " + this.total.toFixed(2))
+    //   }
+    // })
+    // return this.total
   }
 
   remove(productId: number) {
-    console.log("remove product" + productId)
-    this.productAndDiscount.productRemoved = true
+    this.cartItemService.removeItemService(productId).subscribe({
+      next: response => {
+        this.displayAllCarts();
+      },
+      error: err => {
+
+      }
+    })
   }
 
-  changequantity(event: any) {
-    console.log("change quantity Number " + event.target.value)
+  changequantity(item: ItemProductAndDiscount, event: any) {
+    let newItem = new CartItem();
+    newItem.cartItemId = item.cartItemId;
+    newItem.cartId = item.cartId;
+    newItem.productId = item.productId;
+    newItem.cartQty = event.value;
+    this.cartItemService.updateItemService(newItem).subscribe({
+      next: response => {
+        this.displayAllCarts();
+      },
+      error: err => {
+
+      }
+    });
   }
 
   proceedToCheckout() {
@@ -73,11 +100,6 @@ export class CheckoutComponent implements OnInit {
     this.cartAndItemsId.cartRemoved = true
     this.cartAndItemsId.cartPaid = true
 
-    // this.transactionService.sendTransaction().subscribe((response) => {
-
-    // }, error => {
-    //   this.errorMsg = 'There was some internal error! Please try again later!';
-    // });
 
     setInterval(() => {
       this.displayStyle = "none";
@@ -88,6 +110,29 @@ export class CheckoutComponent implements OnInit {
   ngOnDestroy() {
     clearInterval();
   }
+
+  calculateDiscountedItemCost(product: ProductAndDiscount): number {
+    let cost = product.productCost;
+    let discountPercentage = product.discountPercentage;
+    return cost - (cost * (discountPercentage / 100));
+  }
+  calculateSingleItemCost(product: ProductAndDiscount): number {
+    return product.productCost;
+  }
+
+  calculateTotalSavings(product: ProductAndDiscount): number {
+    let cost = product.productCost;
+    let discountPercentage = product.discountPercentage;
+    return cost * (discountPercentage / 100);
+  }
+
+  calculateTotalCost(item: ItemProductAndDiscount, calcSingleItem: any) {
+    return item.cartQty * calcSingleItem(item.productAndDiscount);
+  }
+
+
+
+
 
 
 }

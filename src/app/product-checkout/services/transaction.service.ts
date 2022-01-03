@@ -8,7 +8,7 @@ import { Transaction } from "../transaction.model";
 })
 export class TransactionService {
 
-  baseUrl = "http://localhost:7777/api/transactions";
+  baseUrl = "http://localhost:7777/api/transaction";
 
   constructor(private http: HttpClient) { }
 

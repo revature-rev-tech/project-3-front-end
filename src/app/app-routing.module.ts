@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { HelloAdminComponent } from './hello/hello-admin/hello-admin.component';
 import { HelloCustomerComponent } from './hello/hello-customer/hello-customer.component';
 import { ProductPageComponent } from "./product-checkout/product-page/product-page.component";
@@ -26,6 +25,7 @@ import { MiniFrigesComponent } from './product/mini-friges/mini-friges.component
 import { DeskLampComponent } from './product/desk-lamp/desk-lamp.component';
 import { AirPurifiersComponent } from './product/air-purifiers/air-purifiers.component';
 import { GamePadsComponent } from './product/game-pads/game-pads.component';
+import {CheckoutComponent} from "./product-checkout/checkout/checkout.component";
 
 
 const routes: Routes = [
@@ -54,8 +54,8 @@ const routes: Routes = [
   { path: 'product', component: StoreProductComponent },
   { path: '', redirectTo: 'product', pathMatch: 'full'},
   { path: "home", component: HomeComponent },
-  { path: "product-page", component: ProductPageComponent, canActivate: [AdminGuard] }
-  { path: "product-page/:productId", component: ProductPageComponent },
+  { path: "product-page", component: ProductPageComponent },
+  { path: "product-page/:productId", component: ProductPageComponent }
 
 ];
 
