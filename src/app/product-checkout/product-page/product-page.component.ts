@@ -14,29 +14,25 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.css']
 })
-export class ProductPageComponent implements OnInit {
 
+export class ProductPageComponent implements OnInit {
   productAndDiscount: ProductAndDiscount = new ProductAndDiscount();
   user: User = new User();
   cartAndItems: CartAndItems = new CartAndItems();
   item: CartItem = new CartItem();
   productId: number = 0;
 
-  constructor(private productAndDiscountService: ProductAndDiscountService, 
-    private cartItemService: CartItemService,
-    private cartAndItemsService: CartAndItemsService,
-    private authService: AuthService,
-    private activatedRoute: ActivatedRoute) { }
+  constructor(private productAndDiscountService: ProductAndDiscountService,
+              private cartItemService: CartItemService,
+              private cartAndItemsService: CartAndItemsService,
+              private authService: AuthService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     // let pId: string = this.activatedRoute.snapshot.paramMap.get("productId") == null ? "" :  this.activatedRoute.snapshot.paramMap.get("productId");
     let param = this.activatedRoute.snapshot.paramMap.get("productId");
-    if (param == null) this.productId = 0;
-    else this.productId = parseInt(param);
     this.loadData();
-
   }
-
   loadData() {
     this.user = this.authService.retrieveUser();
     this.productAndDiscountService.getProductAndDiscountService(this.productId).subscribe({
@@ -47,7 +43,6 @@ export class ProductPageComponent implements OnInit {
         console.log(error);
       }
     });
-
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.user.userId).subscribe({
       next: response => {
         this.cartAndItems = response;
@@ -57,16 +52,18 @@ export class ProductPageComponent implements OnInit {
       }
     });
   }
-
   addToCart() {
-    
     this.item.cartId = this.cartAndItems.cartId;
     // this.item.productId = ______;
     this.item.cartQty = 1;
     this.item.cartItemId = -1;
-    this.cartItemService.addNewItemService(this.item);
+    this.cartItemService.addNewItemService(this.item).subscribe({
+      next: response => {
+        this.loadData();
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
   }
-
-
-
 }
