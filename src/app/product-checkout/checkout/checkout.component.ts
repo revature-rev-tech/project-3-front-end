@@ -37,7 +37,9 @@ export class CheckoutComponent implements OnInit {
     private authService: AuthService, private cartService: CartService, private cartItemService: CartItemService) { }
 
   ngOnInit(): void {
-    this.userId = this.authService.retrieveUser().userId;
+    //Line below from authService is not working.
+    // this.userId = this.authService.retrieveUser().userId;
+    if(this.userId <= 0) this.userId = 1; //Remove this line if not testing
     this.displayAllCarts()
   }
 

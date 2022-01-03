@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class AuthService {
 
-  // this AuthService was created to keep track of 
+  // this AuthService was created to keep track of
       // 1) whether a user has logged in or not
       // 2) the user who has logged in and manipulate it in the session storage
   isLoggedIn: boolean = false;
@@ -25,6 +25,7 @@ export class AuthService {
 
   retrieveUser(): User{
     var data: any = sessionStorage.getItem("userData");
+    console.log(data);
     return JSON.parse(data == null?'':data);
   }
 
