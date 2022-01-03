@@ -29,6 +29,7 @@ export class CheckoutComponent implements OnInit {
               private cartItemService: CartItemService) { }
 
   ngOnInit(): void {
+
     this.displayAllCarts()
   }
 
@@ -79,7 +80,7 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  changequantity(item: ItemProductAndDiscount, event: any) {
+  changeQuantity(item: ItemProductAndDiscount, event: any) {
     let newItem = new CartItem();
     newItem.cartItemId = item.cartItemId;
     newItem.cartId = item.cartId;
