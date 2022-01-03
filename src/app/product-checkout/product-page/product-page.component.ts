@@ -30,19 +30,23 @@ export class ProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     // let pId: string = this.activatedRoute.snapshot.paramMap.get("productId") == null ? "" :  this.activatedRoute.snapshot.paramMap.get("productId");
+    // this.user = this.authService.retrieveUser();
     let param = this.activatedRoute.snapshot.paramMap.get("productId");
+    this.productId = (param == null) ? 0 : parseInt(param);
+    console.log(this.productId);
     this.loadData();
   }
   loadData() {
-    this.user = this.authService.retrieveUser();
     this.productAndDiscountService.getProductAndDiscountService(this.productId).subscribe({
       next: response => {
+        console.log(response);
         this.productAndDiscount = response;
       },
       error: error => {
         console.log(error);
       }
     });
+    if(this.user.userId <= 0) this.user.userId = 1; //Remove this line if not testing
     this.cartAndItemsService.getCartAndItemsWithUserIdService(this.user.userId).subscribe({
       next: response => {
         this.cartAndItems = response;
@@ -54,9 +58,10 @@ export class ProductPageComponent implements OnInit {
   }
   addToCart() {
     this.item.cartId = this.cartAndItems.cartId;
-    // this.item.productId = ______;
+    this.item.productId = this.productId;
     this.item.cartQty = 1;
     this.item.cartItemId = -1;
+    console.log(this.item);
     this.cartItemService.addNewItemService(this.item).subscribe({
       next: response => {
         this.loadData();
