@@ -153,9 +153,4 @@ export class CheckoutComponent implements OnInit {
     return item.cartQty * calcSingleItem(item.productAndDiscount);
   }
 
-
-
-
-
-
 }
